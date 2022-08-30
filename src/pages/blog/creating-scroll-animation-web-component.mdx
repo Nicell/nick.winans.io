@@ -1,0 +1,342 @@
+---
+layout: ../../layouts/BlogLayout.astro
+date: June 19, 2019
+title: Creating a Scroll Animation Web Component with Stencil.js
+description: Fast, small, and reusable reveal animations
+---
+
+<img src="https://i.imgur.com/zntktWY.gif" width="100%" />
+*Result of this post in use on my personal site*
+
+*This article assumes you are not familiar with Stencil.js, but it may still be useful if you are.*
+
+## What we're making
+Scroll animations can make a website have a more polished look and feel. Today we're going to develop a simple Web Component with Stencil.js that can wrap your content to instantly give it "scroll to reveal" abilities.
+
+This is what using the component should look like when we're done:
+```html
+<nice-anim>
+  <p>Some content that will animate in on scroll!</p>
+</nice-anim>
+```
+
+### Why Web Components?
+There's a few reason to use Web Components:
+ - They're framework agnostic.
+
+    That means we can use Web Components we make in React, Angular, Vue, or any other framework (including future ones!).
+
+ - You don't need to use a framework.
+
+    You can use Web Components right inside the browser with no additions, they're [supported natively*](https://caniuse.com/#search=components)! That means you can count on them working far into the future, which is something you can't as easily say about a framework.
+
+### Why Stencil?
+From the [Stencil.js GitHub](https://github.com/ionic-team/stencil):
+>Stencil is a simple compiler for generating Web Components and progressive web apps (PWA). Stencil was built by the Ionic Framework team for its next generation of performant mobile and desktop Web Components.
+
+Basically, Stencil supercharges Web Components by offering the best features from frameworks, and then compiles them to lightweight Custom Elements.
+
+Here's a list of some of its features:
+ - Virtual DOM
+ - Async rendering (inspired by React Fiber)
+ - Reactive data-binding
+ - TypeScript
+ - JSX
+
+Hopefully that was enough to convince you we're using the right technologies! 😅
+
+## Let's get started
+You're going to want to have node installed on your computer to follow along.
+
+### Create the Stencil project
+First, we're going to need to create the Stencil project.
+
+```shell
+npm init stencil
+```
+
+After running this command, you will be prompted with the following:
+```shell
+? Pick a starter › - Use arrow-keys. Return to submit.
+
+❯  ionic-pwa     Everything you need to build fast, production ready PWAs
+   app           Minimal starter for building a Stencil app or website
+   component     Collection of web components that can be used anywhere
+```
+
+Here you can select the starting project with the arrow keys. I'll be selecting `component`.
+
+Next, you'll be prompted to name your project. Enter a name and confirm.
+
+That's it!
+
+### Breaking down a Stencil component
+The Stencil starter project includes an example in the `src` folder, `my-component`. Let's take a look at it.
+
+```tsx
+import { Component, Prop, h } from '@stencil/core';
+import { format } from '../../utils/utils';
+
+@Component({
+  tag: 'my-component',
+  styleUrl: 'my-component.css',
+  shadow: true
+})
+export class MyComponent {
+  @Prop() first: string;
+  @Prop() middle: string;
+  @Prop() last: string;
+
+  private getText(): string {
+    return format(this.first, this.middle, this.last);
+  }
+
+  render() {
+    return <div>Hello, World! I'm {this.getText()}</div>;
+  }
+}
+```
+
+#### @Component decorator
+```tsx
+@Component({
+  tag: 'my-component',
+  styleUrl: 'my-component.css',
+  shadow: true
+})
+```
+
+You'll notice `@Component` at the top right before the class declaration. This is a Component decorator. It declares a new component for Stencil to compile. Inside of the decorator, you'll find a config. It allows you to customize a few things.
+
+ - `tag`: The unique tag name of this web component. Must contain a `-`.
+ - `styleUrl`: The URL to the accompanying CSS file. Usually just `{tag}.css`.
+ - `shadow`: A boolean value of whether the component will use a shadow-dom encapsulation if available in the browser. Read more about [what a shadow-dom is on MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). In short, it stops outside styles and markup from affecting your component.
+
+There's many more options for the component. The full list can be found [on the Stencil.js docs](https://stenciljs.com/docs/component#component-options).
+
+#### The class declaration
+```
+export class MyComponent {
+  @Prop() first: string;
+  @Prop() middle: string;
+  @Prop() last: string;
+
+  private getText(): string {
+    return format(this.first, this.middle, this.last);
+  }
+
+  render() {
+    return <div>Hello, World! I'm {this.getText()}</div>;
+  }
+}
+```
+
+Below the Component decorator, you'll find a standard class declaration. This is where you'll define your component's methods, props, state, and of course what you'll be rendering (+ much more!).
+
+In this case, `my-component` has three props (`first`, `middle`, `last`), one custom method (`getText`), and a `render` method.
+
+#### Using `my-component`
+We would use `my-component` as such:
+```html
+<my-component first="Aaron" middle="Malacastre" last="Pavao"></my-component>
+```
+
+The resulting HTML will look like this:
+```html
+<div>Hello, World! I'm Aaron Malacastre Pavao</div>
+```
+
+This output HTML is expected from the component's `render` method.
+```tsx
+render() {
+  return <div>Hello, World! I'm {this.getText()}</div>;
+}
+```
+
+The render method has a call to `this.getText()`, which makes a call to an external utility with the props as arguments. The external call will return a string like this template literal `` `${this.first} ${this.middle} ${this.last}` ``
+
+### Creating our animation component
+With an understanding of Stencil components, let's move on to making our animation component.
+
+First I'll make a new `.tsx` file for the component located at `src/nice-anim/nice-anim.tsx`. I'm naming it `nice-anim`, but any name will do.
+
+#### Construct our component declaration
+We'll start by defining our component.
+```tsx
+import { Component, Element, h } from '@stencil/core';
+
+@Component({
+  tag: 'nice-anim',
+  styleUrl: 'nice-anim.css',
+  shadow: false
+})
+export class NiceAnim {
+  @Element() el: HTMLElement;
+
+  render() {
+    return (
+      <div class="nice-anim">
+        <slot/>
+      </div>
+    );
+  }
+}
+```
+
+To start, we `import` a few things we need just like `my-component`. This includes `Element`, which I'll explain in a second.
+
+After, we define the Component decorator and add a config. If you notice, we have the `shadow` property set to false. This is so that styling to the elements we're animating can pass through normally.
+
+Following the Component decorator, we have the class declaration with the first line being a new `@Element` decorator. This decorator let's us make a declaration that references to our component's DOM element. So in this case, we're making a declaration named `el` that can be accessed with `this.el` in our class. We'll need this to add listeners for when the element is in view.
+
+Finally, you'll notice the `render` method has something we haven't seen yet, `<slot/>`. This element will render whatever is inside the component (kinda like it's `innerHTML`).
+
+If we have this HTML...
+```html
+<nice-anim>
+  <p>Animating text, woosh!</p>
+</nice-anim>
+```
+
+`<slot/>` will render as:
+```html
+<p>Animating text, woosh!</p>
+```
+
+This means we can easily wrap and animate whatever element we want.
+
+Convenient!
+
+#### Add the Intersection Observer
+The Intersection Observer API allows us to listen for when a specific element enters the window viewport. The viewport meaning the part of the webpage actually visible on screen for the user. This way we can start animating only once the element is actually on screen.
+
+It should be noted that the Intersection Observer [is not supported by all browsers.](https://caniuse.com/#search=intersectionobserver) You can add support to them by using a polyfill. [W3C has one available](https://github.com/w3c/IntersectionObserver/tree/master/polyfill) with an easy script to add support:
+`<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>`
+
+Let's add the observer to our component.
+
+```tsx
+export class NiceAnim {
+  @Element() el: HTMLElement;
+
+  io: IntersectionObserver;
+
+  componentDidLoad() {
+    this.addIntersectionObserver();
+  }
+
+  addIntersectionObserver() {
+    this.io = new IntersectionObserver((data: any) => {
+      if (data[0].isIntersecting) {
+        this.el.querySelector('.nice-anim').classList.add('anim');
+        this.removeIntersectionObserver();
+      }
+    });
+    this.io.observe(this.el.querySelector('.nice-anim'));
+  }
+
+  removeIntersectionObserver() {
+    if (this.io) {
+      this.io.disconnect();
+      this.io = null;
+    }
+  }
+
+  render() { ... }
+}
+```
+
+And now let's breakdown what we just added.
+
+```tsx
+io: IntersectionObserver;
+```
+
+First we defined a new field declaration of the component's class named `io`. We gave it the `IntersectionObserver` type as well.
+
+```tsx
+componentDidLoad() {
+  this.addIntersectionObserver();
+}
+```
+
+Next, we added a new lifecycle method, `componentDidLoad`. This method triggers when the component is loaded into the DOM upon the first `render()`. The Intersection Observer can't be added until the element exists in the DOM, so that's what we're using this method for!
+
+```tsx
+addIntersectionObserver() {
+  this.io = new IntersectionObserver((data: any) => {
+    if (data[0].isIntersecting) {
+      this.el.querySelector('.nice-anim').classList.add('anim');
+      this.removeIntersectionObserver();
+    }
+  });
+  this.io.observe(this.el.querySelector('.nice-anim'));
+}
+```
+
+After the component loads, we run `this.addIntersectionObserver`. This method creates the Intersection Observer. The arrow function within the creation of the observer runs every time the observer has either entered its threshold or left it. By default, the threshold is `0`. This means that as soon as the element has a single pixel visible on screen, or no pixels visible anymore, the function runs. In our case we're checking whether the observer `isIntersecting` the viewport. If it is, we add a class named `anim`, which we will configure with CSS in a bit.
+
+Once the element has the class added, we remove the intersection observer because we no longer need it.
+
+Finally, we tell the observer to `observe` the `<div>` we have in the `render()` method with the class `nice-anim`.
+
+This completes our basic animation component for the most part. We now just need to add some CSS to trigger the animation when the class is added to the main `<div>`.
+
+#### Creating the animation CSS
+Inside of our component folder, we'll add a CSS file, `nice-anim.css`.
+
+```css
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.nice-anim {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+  animation-duration: 500ms;
+}
+
+.anim {
+  animation-name: slide-up;
+}
+```
+
+The first thing we create in the file is an `@keyframes` rule named `slide-up`. It defines a CSS animation that has the object start 100% lower than normal, and then it ends at its normal position with an opacity of 1 (visible).
+
+After that, we define the beginning state of our animation `div`. It will start hidden with an opacity of 0, have an animation that will ease and be 500ms long, and have a fill mode of forward. The fill mode means that the element will hold onto the CSS properties that the animation ends with instead of resetting. In this case, the element will stay visible after the animation is complete instead of being invisible again.
+
+Then we finally have our class that's added to the component after the Intersection Observer sees it in the viewport. For this, we just define the animation name, which will then trigger the animation we defined at the top, thus creating a slide-up fade of the element when it comes into view.
+
+#### Let's test it!
+
+```html
+<nice-anim>
+  <h1>Animating H1 Test!</h1>
+</nice-anim>
+```
+
+I put the code above into my Stencil project's `index.html`. Below is the result!
+
+<div style="width: 100%; display: flex; justify-content: center;">
+  <img src="https://i.imgur.com/V4ERNaA.gif" />
+</div>
+
+Looks like a success. 😃
+
+### Wrap up
+We've just created a simple animate on scroll wrapper web component with Stencil.JS. This can be used even in existing pages to make the content pop!
+
+This component can easily be extended with properties to control things like duration, delay, trigger position, animation distance, animation direction, etc. In fact, I've actually done this!
+
+Below is my GitHub repo with the completed and extended animation component. There's directions there to easily use it in one of your projects inside the `readme`.
+
+<div style="width: 100%; display: flex; justify-content: center;">
+  <div class="github-card" data-github="nicell/nice-anim" data-width="400" data-height=""></div>
+  <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>

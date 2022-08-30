@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+const { content } = Astro.props;
+---
+
+<Layout title={content.title}>
+  <header class="container mx-auto max-w-screen-md p-4">
+    <a class="text-3xl" href="/">nick.winans.io</a>
+  </header>
+  <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
+    <a href="/blog">Go Back</a>
+    <h1>{content.title}</h1>
+    <p>{content.date}</p>
+    <slot />
+  </main>
+</Layout>
