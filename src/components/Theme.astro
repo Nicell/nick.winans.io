@@ -1,0 +1,33 @@
+<button class="darkmode-toggle" aria-pressed="false" aria-label="Enable dark mode">
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M422 380h-2l-34 3a175 175 0 0 1-85-328c8-5 6-17-3-19a224 224 0 1 0 132 361c5-8-1-17-8-17zm-166 52a176 176 0 0 1-59-342 224 224 0 0 0 121 331c-19 7-41 11-62 11z" fill="currentColor"/></svg>
+</button>
+
+<script is:inline>
+  // variables
+  let prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let darkMode = localStorage.getItem('darkMode') || (prefersDarkMode ? 'enabled' : 'disabled');
+  const darkModeToggle = document.querySelector('.darkmode-toggle');
+  // functions
+  const enableDarkMode = () => {
+    document.documentElement.dataset.theme = 'dark';
+    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="m505 325-48-69 48-69a38 38 0 0 0-24-59l-83-14-14-83a38 38 0 0 0-59-24l-69 47-69-47a38 38 0 0 0-59 24l-14 83-83 14a38 38 0 0 0-24 59l48 69-48 69a38 38 0 0 0 24 59l83 14 14 83a38 38 0 0 0 59 24l69-47 69 47a38 38 0 0 0 36 4c12-5 20-15 23-28l14-83 83-14a38 38 0 0 0 24-59zm-48 14-100 18-18 100-83-58-83 58-18-100-100-18 58-84-58-82 100-18 18-100 83 58 83-58 18 100 100 18-58 82 58 84zM256 143a111 111 0 1 0 0 222 111 111 0 0 0 0-222zm0 176a63 63 0 1 1 0-127c35 0 64 29 64 63s-29 64-64 64z" fill="currentColor"/></svg>`
+    darkModeToggle.setAttribute('aria-pressed', 'true');
+    darkModeToggle.setAttribute('aria-label', 'Disable dark mode');
+    localStorage.setItem('darkMode', 'enabled');
+  }
+  const disableDarkMode = () => {
+    document.documentElement.dataset.theme = 'light';
+    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M422 380h-2l-34 3a175 175 0 0 1-85-328c8-5 6-17-3-19a224 224 0 1 0 132 361c5-8-1-17-8-17zm-166 52a176 176 0 0 1-59-342 224 224 0 0 0 121 331c-19 7-41 11-62 11z" fill="currentColor"/></svg>`
+    darkModeToggle.setAttribute('aria-pressed', 'false');
+    darkModeToggle.setAttribute('aria-label', 'Enable dark mode');
+    localStorage.setItem('darkMode', 'disabled');
+  }
+  // execution
+  if (darkMode === 'enabled') enableDarkMode()
+  darkModeToggle.addEventListener('click', () => {
+    darkMode = localStorage.getItem('darkMode');
+    darkMode !== 'enabled'
+      ? enableDarkMode()
+      : disableDarkMode()
+  })
+</script>

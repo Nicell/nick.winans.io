@@ -1,16 +1,34 @@
 ---
+import { Picture } from '@astrojs/image/components';
 import Layout from '../layouts/Layout.astro';
-const { content } = Astro.props;
+
+export interface Props {
+  content: {
+    title: string;
+    url: string;
+    description: string;
+    date: string;
+    minutesRead: string;
+  }
+}
+const { content } = Astro.props as Props;
 ---
 
-<Layout title={content.title}>
-  <header class="container mx-auto max-w-screen-md p-4">
-    <a class="text-3xl" href="/">nick.winans.io</a>
-  </header>
+<Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true}>
   <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
-    <a href="/blog">Go Back</a>
+    <div class="not-prose">
+      <a class="link" href="/blog">← Go Back</a>
+    </div>
+    <Picture formats={['avif', 'webp', 'jpeg']} widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={import("../images" + content.url + "/hero.png")}/>
     <h1>{content.title}</h1>
-    <p>{content.date}</p>
+    <div class="flex items-center pl-2">
+      <span>{content.date}</span>
+      <span class="divider divider-horizontal"/>
+      <span class="badge">{content.minutesRead}</span>
+    </div>
     <slot />
   </main>
+  <footer class="container mx-auto max-w-screen-md p-4 text-center">
+    &copy; {new Date().getFullYear()} Nick Winans
+  </footer>
 </Layout>

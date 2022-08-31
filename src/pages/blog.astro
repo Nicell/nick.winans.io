@@ -1,0 +1,31 @@
+---
+import { Picture } from '@astrojs/image/components';
+import Layout from '../layouts/Layout.astro';
+import readingTime from 'reading-time';
+let allPosts = await Astro.glob('./blog/*.mdx');
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+---
+<Layout title="Blog" description="Nick Winans's Blog">
+	<main class="container max-w-screen-xl mx-auto">
+		<h1 class="text-5xl text-center pb-2">Blog</h1>
+    <p class="text-center">Thoughts and what I'm working on.</p>
+		<ul class="flex flex-wrap justify-evenly">
+			{allPosts.map(post => (
+        <li class="card shadow-xl w-96 m-4 bg-base-200">
+          <a href={post.url}>
+            <Picture formats={['avif', 'webp', 'jpeg']} widths={[800, 400]} sizes="(max-width: 400px) 100vw, 400px" aspectRatio="16:9" src={import("../src/images" + post.url + "/hero.png")}/>
+            <div class="card-body">
+              <h2 class="card-title line-clamp-2">{post.frontmatter.title}</h2>
+              <div class="flex items-center">
+                <span>{post.frontmatter.date}</span>
+                <span class="divider divider-horizontal mx-0"/>
+                <span class="badge">{post.frontmatter.minutesRead}</span>
+              </div>
+              <p>{post.frontmatter.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+		</ul>
+	</main>
+</Layout>
