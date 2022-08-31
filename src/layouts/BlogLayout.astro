@@ -9,9 +9,11 @@ export interface Props {
     description: string;
     date: string;
     minutesRead: string;
+    hero: string;
   }
 }
 const { content } = Astro.props as Props;
+const hero = import("../pages" + content.url + "/hero.png");
 ---
 
 <Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true}>
@@ -19,7 +21,7 @@ const { content } = Astro.props as Props;
     <div class="not-prose">
       <a class="link" href="/blog">← Go Back</a>
     </div>
-    <Picture formats={['avif', 'webp', 'jpeg']} widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={import("../images" + content.url + "/hero.png")}/>
+    <Picture formats={['avif', 'webp', 'jpeg']} widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <h1>{content.title}</h1>
     <div class="flex items-center pl-2">
       <span>{content.date}</span>
