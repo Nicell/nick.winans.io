@@ -10,7 +10,7 @@
   // functions
   const enableDarkMode = () => {
     document.documentElement.dataset.theme = 'dark';
-    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="m505 325-48-69 48-69a38 38 0 0 0-24-59l-83-14-14-83a38 38 0 0 0-59-24l-69 47-69-47a38 38 0 0 0-59 24l-14 83-83 14a38 38 0 0 0-24 59l48 69-48 69a38 38 0 0 0 24 59l83 14 14 83a38 38 0 0 0 59 24l69-47 69 47a38 38 0 0 0 36 4c12-5 20-15 23-28l14-83 83-14a38 38 0 0 0 24-59zm-48 14-100 18-18 100-83-58-83 58-18-100-100-18 58-84-58-82 100-18 18-100 83 58 83-58 18 100 100 18-58 82 58 84zM256 143a111 111 0 1 0 0 222 111 111 0 0 0 0-222zm0 176a63 63 0 1 1 0-127c35 0 64 29 64 63s-29 64-64 64z" fill="currentColor"/></svg>`
+    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M256 144a112 112 0 1 0 0 224 112 112 0 0 0 0-224zm0 176a64 64 0 1 1 0-128 64 64 0 0 1 0 128zm0-208c13 0 24-11 24-24V24a24 24 0 1 0-48 0v64c0 13 11 24 24 24zm0 288c-13 0-24 11-24 24v64a24 24 0 0 0 48 0v-64c0-13-11-24-24-24zm232-168h-64a24 24 0 0 0 0 48h64a24 24 0 1 0 0-48zm-376 24c0-13-11-24-24-24H24a24 24 0 0 0 0 48h64c13 0 24-11 24-24zm280 102a24 24 0 1 0-34 34l45 45a24 24 0 0 0 34 0c9-9 9-25 0-34l-45-45zM120 154a24 24 0 0 0 34 0c10-9 10-24 0-34l-45-45a24 24 0 1 0-34 34l45 45zm255 7c6 0 12-2 17-7l45-45a24 24 0 1 0-34-34l-45 45a24 24 0 0 0 17 41zM120 358l-45 45a24 24 0 1 0 34 34l45-45a24 24 0 1 0-34-34z" fill="currentColor"/></svg>`
     darkModeToggle.setAttribute('aria-pressed', 'true');
     darkModeToggle.setAttribute('aria-label', 'Disable dark mode');
     localStorage.setItem('darkMode', 'enabled');
