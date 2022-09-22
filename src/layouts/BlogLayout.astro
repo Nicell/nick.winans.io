@@ -13,7 +13,8 @@ export interface Props {
   }
 }
 const { content } = Astro.props as Props;
-const hero = import("../pages" + content.url + "/hero.png");
+const heroes = (await import.meta.glob("../pages/blog/**/hero.png"));
+const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
 ---
 
 <Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true}>
