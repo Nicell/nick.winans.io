@@ -19,19 +19,37 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
 
 <Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true}>
   <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
+    <Picture formats={['avif', 'webp', 'jpeg']} widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <div class="not-prose">
       <a class="link" href="/blog">← Go Back</a>
     </div>
-    <Picture formats={['avif', 'webp', 'jpeg']} widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <h1>{content.title}</h1>
     <div class="flex items-center pl-2">
       <span>{content.date}</span>
       <span class="divider divider-horizontal"/>
       <span class="badge">{content.minutesRead}</span>
     </div>
-    <slot />
+    <article>
+      <slot />
+    </article>
   </main>
   <footer class="container mx-auto max-w-screen-md p-4 text-center">
     &copy; {new Date().getFullYear()} Nick Winans
   </footer>
+  <style is:global>
+    article .heading-group {
+      position: relative;
+    }
+    article a {
+      opacity: 0;
+      position: absolute;
+      right: 100%;
+      top: 0;
+      transition: opacity 0.15s ease;
+      padding-right: 0.5rem;
+    }
+    article .heading-group:hover a {
+      opacity: 1;
+    }
+  </style>
 </Layout>

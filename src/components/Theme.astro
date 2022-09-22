@@ -1,5 +1,5 @@
-<button class="darkmode-toggle" aria-pressed="false" aria-label="Enable dark mode">
-  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M422 380h-2l-34 3a175 175 0 0 1-85-328c8-5 6-17-3-19a224 224 0 1 0 132 361c5-8-1-17-8-17zm-166 52a176 176 0 0 1-59-342 224 224 0 0 0 121 331c-19 7-41 11-62 11z" fill="currentColor"/></svg>
+<button class="darkmode-toggle btn btn-square btn-ghost" aria-pressed="false" aria-label="Enable dark mode">
+  <svg aria-hidden="true" width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M332 426a150 150 0 0 1-102-278c7-4 5-15-3-17a192 192 0 1 0 114 310c5-6-1-16-9-15z"/><path fill="currentColor" d="m288 63 12 30 4 2 4-2 12-30 30-12 2-4-2-3-30-13-12-30-4-2-4 2-12 30-30 13-2 4 2 4 30 11zm220 154-60-25-25-60c-1-2-4-5-7-5s-6 2-7 4l-25 61-60 25c-2 1-4 4-4 7s2 6 4 7l60 25 25 60c1 2 4 4 7 4s6-2 7-4l25-60 60-25a8 8 0 0 0 0-14z" opacity=".4"/></svg>
 </button>
 
 <script is:inline>
@@ -10,14 +10,14 @@
   // functions
   const enableDarkMode = () => {
     document.documentElement.dataset.theme = 'dark';
-    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M256 144a112 112 0 1 0 0 224 112 112 0 0 0 0-224zm0 176a64 64 0 1 1 0-128 64 64 0 0 1 0 128zm0-208c13 0 24-11 24-24V24a24 24 0 1 0-48 0v64c0 13 11 24 24 24zm0 288c-13 0-24 11-24 24v64a24 24 0 0 0 48 0v-64c0-13-11-24-24-24zm232-168h-64a24 24 0 0 0 0 48h64a24 24 0 1 0 0-48zm-376 24c0-13-11-24-24-24H24a24 24 0 0 0 0 48h64c13 0 24-11 24-24zm280 102a24 24 0 1 0-34 34l45 45a24 24 0 0 0 34 0c9-9 9-25 0-34l-45-45zM120 154a24 24 0 0 0 34 0c10-9 10-24 0-34l-45-45a24 24 0 1 0-34 34l45 45zm255 7c6 0 12-2 17-7l45-45a24 24 0 1 0-34-34l-45 45a24 24 0 0 0 17 41zM120 358l-45 45a24 24 0 1 0 34 34l45-45a24 24 0 1 0-34-34z" fill="currentColor"/></svg>`
+    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M256 144a112 112 0 1 0 0 224 112 112 0 0 0 0-224z" fill="currentColor"/><path d="M109 75a24 24 0 1 0-34 34l45 45a24 24 0 0 0 34 0c10-9 10-24 0-34l-45-45zM256 0c-13 0-24 11-24 24v64a24 24 0 0 0 48 0V24c0-13-11-24-24-24zM112 256c0-13-11-24-24-24H24a24 24 0 0 0 0 48h64c13 0 24-11 24-24zm263-95c6 0 12-2 17-7l45-45a24 24 0 1 0-34-34l-45 45a24 24 0 0 0 17 41zM256 400c-13 0-24 11-24 24v64a24 24 0 0 0 48 0v-64c0-13-11-24-24-24zm-136-42-45 45a24 24 0 1 0 34 34l45-45a24 24 0 1 0-34-34zm368-126h-64a24 24 0 0 0 0 48h64a24 24 0 1 0 0-48zm-96 126a24 24 0 1 0-34 34l45 45a24 24 0 0 0 34 0c9-9 9-25 0-34l-45-45z" opacity=".4" fill="currentColor"/></svg>`
     darkModeToggle.setAttribute('aria-pressed', 'true');
     darkModeToggle.setAttribute('aria-label', 'Disable dark mode');
     localStorage.setItem('darkMode', 'enabled');
   }
   const disableDarkMode = () => {
     document.documentElement.dataset.theme = 'light';
-    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="32" height="32" viewBox="0 0 512 512"><path d="M422 380h-2l-34 3a175 175 0 0 1-85-328c8-5 6-17-3-19a224 224 0 1 0 132 361c5-8-1-17-8-17zm-166 52a176 176 0 0 1-59-342 224 224 0 0 0 121 331c-19 7-41 11-62 11z" fill="currentColor"/></svg>`
+    darkModeToggle.innerHTML = `<svg aria-hidden="true" width="32" height="32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M332 426a150 150 0 0 1-102-278c7-4 5-15-3-17a192 192 0 1 0 114 310c5-6-1-16-9-15z"/><path fill="currentColor" d="m288 63 12 30 4 2 4-2 12-30 30-12 2-4-2-3-30-13-12-30-4-2-4 2-12 30-30 13-2 4 2 4 30 11zm220 154-60-25-25-60c-1-2-4-5-7-5s-6 2-7 4l-25 61-60 25c-2 1-4 4-4 7s2 6 4 7l60 25 25 60c1 2 4 4 7 4s6-2 7-4l25-60 60-25a8 8 0 0 0 0-14z" opacity=".4"/></svg>`
     darkModeToggle.setAttribute('aria-pressed', 'false');
     darkModeToggle.setAttribute('aria-label', 'Enable dark mode');
     localStorage.setItem('darkMode', 'disabled');
