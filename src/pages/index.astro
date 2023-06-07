@@ -59,7 +59,11 @@ let socialMedia = [
 					<a href={post.url} class="group">
 						<h3 class="text-lg font-medium leading-5 mb-1 group-hover:underline">{post.frontmatter.title}</h3>
 						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
-						<p class="text-sm opacity-70 font-normal leading-5">{post.frontmatter.date}</p>
+						<div class="flex flex-wrap opacity-80 items-center">
+							<p class="text-sm font-normal leading-5">{post.frontmatter.date}</p>
+							<span class="divider divider-horizontal mx-0"/>
+							<span class="badge badge-sm badge-outline">{post.frontmatter.minutesRead}</span>
+						</div>
 					</a>
 				))}
 			</div>
