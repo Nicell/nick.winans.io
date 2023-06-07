@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 const SITE_TITLE = 'Nick Winans';
-const SITE_DESCRIPTION = `I'm Nick. I design and build web apps. You can find some of my skills and projects here. I'm constantly learning, so I can refine my user interfaces, make my code easier to maintain, and optimize my deployments.`;
+const SITE_DESCRIPTION = `Hey! I'm Nick. I'm a software engineer and keyboard hobbyist turned business owner.`;
 
 export const get = () =>
 	rss({

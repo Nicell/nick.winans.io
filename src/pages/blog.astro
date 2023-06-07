@@ -14,15 +14,15 @@ allPosts.forEach(async (post) => {
     <p class="text-center">Thoughts and what I'm working on.</p>
 		<ul class="flex flex-wrap justify-evenly">
 			{allPosts.map(post => (
-        <li class="card shadow-xl w-96 m-4 bg-base-200">
+        <li class="card shadow-lg w-96 m-4 bg-base-100 overflow-hidden">
           <a href={post.url}>
-            <Picture formats={['avif', 'webp', 'jpeg']} widths={[800, 400]} sizes="(max-width: 400px) 100vw, 400px" aspectRatio="16:9" src={post.frontmatter.hero}/>
-            <div class="card-body">
-              <h2 class="card-title line-clamp-2">{post.frontmatter.title}</h2>
+            <Picture formats={['avif', 'webp', 'jpeg']} widths={[800, 400]} sizes="(max-width: 400px) 100vw, 400px" aspectRatio="16:9" src={post.frontmatter.hero || './'}/>
+            <div class="card-body p-6">
+              <h2 class="font-display card-title line-clamp-2">{post.frontmatter.title}</h2>
               <div class="flex items-center">
                 <span>{post.frontmatter.date}</span>
                 <span class="divider divider-horizontal mx-0"/>
-                <span class="badge">{post.frontmatter.minutesRead}</span>
+                <span class="badge badge-outline">{post.frontmatter.minutesRead}</span>
               </div>
               <p>{post.frontmatter.description}</p>
             </div>

@@ -1,10 +1,70 @@
 ---
+import { Picture } from '@astrojs/image/components';
+import { Icon } from 'astro-icon'
 import Layout from '../layouts/Layout.astro';
+let allPosts = await Astro.glob('./blog/**/index.mdx');
+allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+let recentPosts = allPosts.slice(0, 3);
+let socialMedia = [
+	{
+		url: 'https://github.com/Nicell',
+		icon: 'fa-brands:github',
+		name: 'GitHub'
+	},
+	{
+		url: 'https://twitter.com/WinansNick',
+		icon: 'fa-brands:twitter',
+		name: 'Twitter'
+	},
+	{
+		url: 'https://www.linkedin.com/in/nick-winans/',
+		icon: 'fa-brands:linkedin',
+		name: 'LinkedIn'
+	},
+	{
+		url: 'https://discord.com/invite/6kRybj4Y',
+		icon: 'fa-brands:discord',
+		name: 'Discord'
+	},
+	{
+		url: 'mailto:nick@winans.io',
+		icon: 'fluent:mail-24-filled',
+		name: 'Email'
+	}
+]
 ---
-<Layout title="Nick Winans" description="I'm Nick. I design and build web apps. You can find some of my skills and projects here. I'm constantly learning, so I can refine my user interfaces, make my code easier to maintain, and optimize my deployments.">
-	<main>
-		<h1>nick.winans.io</h1>
-		<a href="/blog" class="btn">Blog</a>
+<Layout title="Nick Winans" description="Hey! I'm Nick. I'm a software engineer and keyboard hobbyist turned business owner.">
+	<main class="mx-auto max-w-screen-xl flex xl:p-0 p-4 lg:flex-row flex-col pt-2">
+		<section class={`card flex-grow flex flex-row bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-100 via-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-950`}>
+			<div class="p-6 flex flex-col justify-between">
+				<div>
+					<h1 class="font-display font-semibold text-4xl xl:text-5xl">Hey! I'm Nick.</h1>
+					<h2 class="font-normal text-2xl xl:text-3xl leading-7">I'm a software engineer and keyboard hobbyist turned business owner.</h2>
+					<p class="pt-4 xl:text-lg">Currently, I'm working at Roblox on Accessibility, empowering everyone to play. I'm also making powerful and polished wireless products for the mechanical keyboard hobby at <a href="https://nicekeyboards.com" class="underline" target="blank">Nice Keyboards</a> and <a href="https://typeractive.xyz" class="underline" target="blank">Typeractive.xyz</a>.</p>
+				</div>
+				<div class="flex justify-start mt-4 items-center">
+					{socialMedia.map(sm => (
+						<a href={sm.url} target="blank" title={sm.name}><Icon name={sm.icon} class="xl:max-w-[2.5em] xl:h-9 md:max-w-[2.25em] md:h-8 max-w-[2em] h-7 xl:mr-4 mr-3"/></a>
+					))}
+				</div>
+			</div>
+			<div class="flex-shrink-0 flex-col flex justify-end">
+				<Picture formats={['avif', 'webp', 'png']} widths={[600, 300]} sizes="(max-width: 550px) 0px, (max-width: 768px) 200px, 300px" src={import('../images/me.png')}/>
+			</div>
+		</section>
+		<section class="flex-none p-3 lg:ml-2 lg:w-80">
+			<h2 class="font-display font-bold text-2xl mb-2">Articles</h2>
+			<div class="lg:grid-cols-1 grid sm:grid-cols-3 gap-4 mb-2 xs:grid-cols-1">
+				{recentPosts.map(post => (
+					<a href={post.url}>
+						<h3 class="text-lg font-medium leading-5 mb-2">{post.frontmatter.title}</h3>
+						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
+						<p class="text-sm opacity-70 font-normal leading-5">{post.frontmatter.date}</p>
+					</a>
+				))}
+			</div>
+			<a href="/blog" class="text-blue-500 hover:underline">See all articles →</a>
+		</section>
 	</main>
 </Layout>
 

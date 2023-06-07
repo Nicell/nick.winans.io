@@ -23,11 +23,11 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
     <div class="not-prose">
       <a class="link" href="/blog">← Go Back</a>
     </div>
-    <h1>{content.title}</h1>
+    <h1 class="font-display">{content.title}</h1>
     <div class="flex items-center pl-2">
       <span>{content.date}</span>
       <span class="divider divider-horizontal"/>
-      <span class="badge">{content.minutesRead}</span>
+      <span class="badge badge-outline">{content.minutesRead}</span>
     </div>
     <article>
       <slot />
@@ -40,7 +40,7 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
     article .heading-group {
       position: relative;
     }
-    article a {
+    .heading-group > a {
       opacity: 0;
       position: absolute;
       right: 100%;

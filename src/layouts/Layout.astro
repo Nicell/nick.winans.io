@@ -18,6 +18,16 @@ const { title, description, blog } = Astro.props as Props;
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<style>
+		@font-face {
+			font-family: "Geologica";
+			src: url("/fonts/Geologica.woff2") format("woff2");
+    }
+		@font-face {
+			font-family: "Lexend Deca";
+			src: url("/fonts/LexendDeca.woff2") format("woff2");
+    }
+	</style>
 </head>
 <body>
 	<Header blog={blog}/>
