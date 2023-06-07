@@ -12,6 +12,9 @@ import image from "@astrojs/image";
 // https://astro.build/config
 export default defineConfig({
   site: "https://nick.winans.io",
+  build: {
+    inlineStylesheets: 'auto'
+  },
   integrations: [tailwind(), sitemap(), image(), robotsTxt(), mdx({
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
       behavior: 'before',
