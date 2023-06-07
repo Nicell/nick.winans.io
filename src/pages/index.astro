@@ -1,6 +1,6 @@
 ---
 import { Picture } from '@astrojs/image/components';
-import { Icon } from 'astro-icon'
+import { Icon } from 'astro-iconify';
 import Layout from '../layouts/Layout.astro';
 let allPosts = await Astro.glob('./blog/**/index.mdx');
 allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
@@ -8,22 +8,22 @@ let recentPosts = allPosts.slice(0, 3);
 let socialMedia = [
 	{
 		url: 'https://github.com/Nicell',
-		icon: 'fa-brands:github',
+		icon: 'fa6-brands:github',
 		name: 'GitHub'
 	},
 	{
 		url: 'https://twitter.com/WinansNick',
-		icon: 'fa-brands:twitter',
+		icon: 'fa6-brands:twitter',
 		name: 'Twitter'
 	},
 	{
 		url: 'https://www.linkedin.com/in/nick-winans/',
-		icon: 'fa-brands:linkedin',
+		icon: 'fa6-brands:linkedin',
 		name: 'LinkedIn'
 	},
 	{
 		url: 'https://discord.com/invite/6kRybj4Y',
-		icon: 'fa-brands:discord',
+		icon: 'fa6-brands:discord',
 		name: 'Discord'
 	},
 	{
