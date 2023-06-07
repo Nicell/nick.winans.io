@@ -19,7 +19,7 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
 
 <Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true}>
   <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
-    <Picture formats={['avif', 'webp', 'jpeg']} widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
+    <Picture formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 aspect-[16/9]" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <div class="not-prose">
       <a class="link" href="/blog">← Go Back</a>
     </div>
