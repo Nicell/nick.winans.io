@@ -1,8 +1,6 @@
-# Welcome to [Astro](https://astro.build)
+# nick.winans.io
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This is my personal website, built with [Astro](https://astro.build).
 
 ## 🚀 Project Structure
 
