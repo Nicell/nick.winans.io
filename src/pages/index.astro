@@ -57,7 +57,7 @@ let socialMedia = [
 			<div class="lg:grid-cols-1 grid sm:grid-cols-3 gap-4 mb-2 grid-cols-1">
 				{recentPosts.map(post => (
 					<a href={post.url} class="group">
-						<h3 class="text-lg font-medium leading-5 mb-2 group-hover:underline">{post.frontmatter.title}</h3>
+						<h3 class="text-lg font-medium leading-5 mb-1 group-hover:underline">{post.frontmatter.title}</h3>
 						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
 						<p class="text-sm opacity-70 font-normal leading-5">{post.frontmatter.date}</p>
 					</a>
