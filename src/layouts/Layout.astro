@@ -24,11 +24,25 @@ const { title, description, og, blog } = Astro.props as Props;
 		@font-face {
 			font-family: "Geologica";
 			src: url("/fonts/Geologica.woff2") format("woff2");
+			font-display: optional;
     }
 		@font-face {
 			font-family: "Lexend Deca";
 			src: url("/fonts/LexendDeca.woff2") format("woff2");
+			font-display: optional;
     }
+		@font-face {
+			font-family: "Geologica Fallback";
+			size-adjust: 108%;
+			ascent-override: 93%;
+			src: local("Arial");
+		}
+		@font-face {
+			font-family: "Lexend Deca Fallback";
+			size-adjust: 95%;
+			ascent-override: 102%;
+			src: local("Arial Black");
+		}
 	</style>
 </head>
 <body>

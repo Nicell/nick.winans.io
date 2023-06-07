@@ -44,20 +44,20 @@ let socialMedia = [
 				</div>
 				<div class="flex justify-start mt-4 items-center">
 					{socialMedia.map(sm => (
-						<a href={sm.url} target="blank" title={sm.name}><Icon name={sm.icon} class="xl:max-w-[2.5em] xl:h-9 md:max-w-[2.25em] md:h-8 max-w-[2em] h-7 xl:mr-4 mr-3"/></a>
+						<a href={sm.url} target="blank" class="xl:mr-4 mr-3" title={sm.name}><Icon name={sm.icon} class="xl:max-w-[2.5em] xl:h-9 md:max-w-[2.25em] md:h-8 max-w-[2em] h-7"/></a>
 					))}
 				</div>
 			</div>
-			<div class="flex-shrink-0 flex-col flex justify-end">
-				<Picture formats={['avif', 'webp', 'png']} widths={[600, 300]} sizes="(max-width: 550px) 0px, (max-width: 768px) 200px, 300px" src={import('../images/me.png')}/>
+			<div class="flex-shrink-0 flex-col flex justify-end w-0 sm:w-[200px] md:w-[300px]">
+				<Picture formats={['avif', 'webp', 'png']} widths={[600, 300]} sizes="(max-width: 640px) 0px, (max-width: 768px) 200px, 300px" src={import('../images/me.png')}/>
 			</div>
 		</section>
 		<section class="flex-none p-3 lg:ml-2 lg:w-80">
 			<h2 class="font-display font-bold text-2xl mb-2">Articles</h2>
-			<div class="lg:grid-cols-1 grid sm:grid-cols-3 gap-4 mb-2 xs:grid-cols-1">
+			<div class="lg:grid-cols-1 grid sm:grid-cols-3 gap-4 mb-2 grid-cols-1">
 				{recentPosts.map(post => (
-					<a href={post.url}>
-						<h3 class="text-lg font-medium leading-5 mb-2">{post.frontmatter.title}</h3>
+					<a href={post.url} class="group">
+						<h3 class="text-lg font-medium leading-5 mb-2 group-hover:underline">{post.frontmatter.title}</h3>
 						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
 						<p class="text-sm opacity-70 font-normal leading-5">{post.frontmatter.date}</p>
 					</a>

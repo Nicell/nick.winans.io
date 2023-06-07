@@ -4,9 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     fontFamily: {
-      sans: ["Geologica", "ui-sans-serif"],
+      sans: ["Geologica", "Geologica Fallback", "ui-sans-serif", "system-ui"],
       mono: ["JetBrains Mono", "monospace"],
-      display: ["Lexend Deca", "ui-sans-serif"],
+      display: ["Lexend Deca", "Lexend Deca Fallback", "ui-sans-serif", "system-ui"],
     },
     extend: {},
   },
