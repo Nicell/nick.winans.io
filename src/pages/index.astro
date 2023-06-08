@@ -33,7 +33,7 @@ let socialMedia = [
 	}
 ]
 ---
-<Layout title="Nick Winans" description="Hey! I'm Nick. I'm a software engineer and keyboard hobbyist turned business owner." og="og.png">
+<Layout title="Nick Winans" description="Hey! I'm Nick. I'm a software engineer and keyboard hobbyist turned business owner." og="https://nick.winans.io/og.png">
 	<main class="mx-auto max-w-screen-xl flex xl:p-0 p-4 lg:flex-row flex-col pt-2">
 		<section class={`card flex-grow flex flex-row bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-green-100 via-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-950`}>
 			<div class="p-6 flex flex-col justify-between">
@@ -44,7 +44,9 @@ let socialMedia = [
 				</div>
 				<div class="flex justify-start mt-4 items-center">
 					{socialMedia.map(sm => (
-						<a href={sm.url} target="blank" class="xl:mr-4 mr-3" title={sm.name}><Icon name={sm.icon} class="xl:max-w-[2.5em] xl:h-9 md:max-w-[2.25em] md:h-8 max-w-[2em] h-7"/></a>
+						<a href={sm.url} target="blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2  rounded-full bg-base-100/50 backdrop-blur-md" title={sm.name}>
+							<Icon name={sm.icon} class="xl:max-w-[2em] xl:h-8 md:max-w-[1.75em] md:h-7 max-w-[1.5em] h-6"/>
+						</a>
 					))}
 				</div>
 			</div>
@@ -60,9 +62,9 @@ let socialMedia = [
 						<h3 class="text-lg font-medium leading-5 mb-1 group-hover:underline">{post.frontmatter.title}</h3>
 						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
 						<div class="flex flex-wrap opacity-80 items-center">
-							<p class="text-sm font-normal leading-5">{post.frontmatter.date}</p>
+							<p class="text-sm font-normal leading-5">{new Date(post.frontmatter.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</p>
 							<span class="divider divider-horizontal mx-0"/>
-							<span class="badge badge-sm badge-outline">{post.frontmatter.minutesRead}</span>
+							<span class="badge badge-sm badge-outline">{post.frontmatter.minutesRead} min read</span>
 						</div>
 					</a>
 				))}

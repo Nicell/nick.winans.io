@@ -15,9 +15,10 @@ export interface Props {
 const { content } = Astro.props as Props;
 const heroes = (await import.meta.glob("../pages/blog/**/hero.png"));
 const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
+const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.date)}&minutes=${content.minutesRead}`;
 ---
 
-<Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true}>
+<Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true} og={og}>
   <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
     <Picture formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <div class="not-prose">
@@ -25,9 +26,9 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
     </div>
     <h1 class="font-display">{content.title}</h1>
     <div class="flex items-center pl-2">
-      <span>{content.date}</span>
+      <span>{new Date(content.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
       <span class="divider divider-horizontal"/>
-      <span class="badge badge-outline">{content.minutesRead}</span>
+      <span class="badge badge-outline">{content.minutesRead} min read</span>
     </div>
     <article>
       <slot />

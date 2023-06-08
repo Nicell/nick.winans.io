@@ -20,9 +20,9 @@ await Promise.all(allPosts.map(async (post) => {
             <div class="card-body p-6">
               <h2 class="font-display card-title line-clamp-2 group-hover:underline">{post.frontmatter.title}</h2>
               <div class="flex items-center">
-                <span>{post.frontmatter.date}</span>
+                <span>{new Date(post.frontmatter.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
                 <span class="divider divider-horizontal mx-0"/>
-                <span class="badge badge-outline">{post.frontmatter.minutesRead}</span>
+                <span class="badge badge-outline">{post.frontmatter.minutesRead} min read</span>
               </div>
               <p>{post.frontmatter.description}</p>
             </div>
