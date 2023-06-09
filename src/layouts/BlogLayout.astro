@@ -1,6 +1,7 @@
 ---
 import { Picture } from '@astrojs/image/components';
 import Layout from '../layouts/Layout.astro';
+import '../styles/blog.css';
 
 export interface Props {
   content: {
@@ -20,12 +21,13 @@ const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.
 
 <Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true} og={og}>
   <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
-    <Picture formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
-    <div class="not-prose">
+    <Picture formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 mb-6 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
+    <div class="mb-2 not-prose">
       <a class="link" href="/blog">← Go Back</a>
-    </div>
-    <h1 class="font-display">{content.title}</h1>
-    <div class="flex items-center pl-2">
+    </div>  
+    <h1 class="font-display mb-0">{content.title}</h1>
+    <p class="text-xl mt-3 mb-4">{content.description}</p>
+    <div class="flex items-center pl-2 mb-8">
       <span>{new Date(content.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
       <span class="divider divider-horizontal"/>
       <span class="badge badge-outline">{content.minutesRead} min read</span>

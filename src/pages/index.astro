@@ -59,7 +59,7 @@ let socialMedia = [
 			<div class="lg:grid-cols-1 grid sm:grid-cols-3 gap-4 mb-2 grid-cols-1">
 				{recentPosts.map(post => (
 					<a href={post.url} class="group">
-						<h3 class="text-lg font-medium leading-5 mb-1 group-hover:underline">{post.frontmatter.title}</h3>
+						<h3 class="text-lg font-medium leading-5 mb-1 group-hover:underline dark:text-blue-200">{post.frontmatter.title}</h3>
 						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
 						<div class="flex flex-wrap opacity-80 items-center">
 							<p class="text-sm font-normal leading-5">{new Date(post.frontmatter.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</p>

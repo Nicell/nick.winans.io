@@ -15,7 +15,9 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto'
   },
-  integrations: [tailwind(), sitemap(), image(), robotsTxt(), mdx({
+  integrations: [tailwind(), sitemap(), image({
+    serviceEntryPoint: '@astrojs/image/sharp'
+  }), robotsTxt(), mdx({
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
       behavior: 'before',
       content: h('span.icon-link', [

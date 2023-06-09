@@ -4,8 +4,9 @@ date: 2019/6/19
 title: Creating a Scroll Animation Web Component with Stencil.js
 description: Fast, small, and reusable reveal animations
 ---
+import BlogPicture from '../../../components/BlogPicture.astro'
 
-<img src="https://i.imgur.com/zntktWY.gif" width="100%" />
+<BlogPicture formats={['webp', 'gif']} alt="My personal site with lots of items fading and sliding in as the page is scrolled" src="https://i.imgur.com/zntktWY.gif" />
 *Result of this post in use on my personal site*
 
 *This article assumes you are not familiar with Stencil.js, but it may still be useful if you are.*
@@ -324,7 +325,7 @@ Then we finally have our class that's added to the component after the Intersect
 I put the code above into my Stencil project's `index.html`. Below is the result!
 
 <div style="width: 100%; display: flex; justify-content: center;">
-  <img src="https://i.imgur.com/V4ERNaA.gif" />
+  <BlogPicture src="https://i.imgur.com/V4ERNaA.gif" alt="H1 tag fading in and up" formats={['webp', 'gif']} />
 </div>
 
 Looks like a success. 😃

@@ -4,6 +4,7 @@ date: 2020/10/3
 title: Fixing the Mysterious Broken Bootloader
 description: Investigating and fixing the bootloader woes of ZMK
 ---
+import BlogPicture from '../../../components/BlogPicture.astro';
 
 Recently I was able to fix the "stuck in the bootloader" issue in [#322](https://github.com/zmkfirmware/zmk/pull/322) that had been plaguing us for quite some time. I want to go over what the issue was, how the issue was diagnosed, and how it was fixed.
 
@@ -43,7 +44,7 @@ To understand what's going wrong, we first need to understand how the settings
 system works. Here's a diagram to explain the flash space that the settings
 system holds for our nRF52840 based boards (nice!nano, nRFMicro, BlueMicro).
 
-![Settings Diagram](https://i.imgur.com/DF2t3Oq.png)
+<BlogPicture src="https://i.imgur.com/DF2t3Oq.png" alt="Settings Diagram" />
 
 The settings flash space lives at the end of the flash of the chip. In this case
 it starts at `0xF8000` and is `0x8000` bytes long, which is 32KB in more
@@ -80,7 +81,7 @@ however, I wasn't sure what the second and third lines meant, but we'll get back
 to that. Nonetheless the next two logs from NVS showed erasing the sector at
 `0xFD000` and then erasing the `0xFF000` sector.
 
-![Erased Sectors](https://i.imgur.com/DmLycMJ.png)
+<BlogPicture src="https://i.imgur.com/DmLycMJ.png" alt="Erased Sectors" />
 
 It's really odd that the third to last sector and the last sector are erased,
 and then shortly after the bootloader issue is hit. I really had no explanation
@@ -130,7 +131,7 @@ BOOTLOADER_SETTINGS (rw) : ORIGIN = 0xFF000, LENGTH = 0x1000
 
 Here's a diagram to show this a bit better.
 
-![Adafruit Bootloader Diagram](https://i.imgur.com/TEOA31m.png)
+<BlogPicture src="https://i.imgur.com/TEOA31m.png" alt="Adafruit Bootloader Diagram" />
 
 We've found the issue! As you can see from the red bar (representing our
 settings flash area), we've put the settings flash area _right on top_ of the

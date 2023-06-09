@@ -1,0 +1,12 @@
+.loading-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(var(--b2));
+  animation: shimmer 1s infinite alternate;
+}
+
+@keyframes shimmer {
+  100% {
+    background-color: hsl(var(--b1));
+  }
+}
