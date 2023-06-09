@@ -40,11 +40,11 @@ let socialMedia = [
 				<div>
 					<h1 class="font-display font-semibold text-4xl xl:text-5xl">Hey! I'm Nick.</h1>
 					<h2 class="font-normal text-2xl xl:text-3xl leading-7">I'm a software engineer and keyboard hobbyist turned business owner.</h2>
-					<p class="pt-4 xl:text-lg">Currently, I'm working at Roblox on accessibility, empowering everyone to play. I'm also making performant and polished wireless products for the mechanical keyboard hobby at <a href="https://nicekeyboards.com" class="underline" target="blank">Nice Keyboards</a> and <a href="https://typeractive.xyz" class="underline" target="blank">Typeractive.xyz</a>.</p>
+					<p class="pt-4 xl:text-lg">Currently, I'm working at Roblox on accessibility, empowering everyone to play. I'm also making performant and polished wireless products for the mechanical keyboard hobby at <a href="https://nicekeyboards.com" class="hover:dark:text-blue-400 hover:text-blue-600 transition-all underline" target="_blank">Nice Keyboards</a> and <a href="https://typeractive.xyz" class="hover:dark:text-blue-400 hover:text-blue-600 transition-all underline" target="_blank">Typeractive.xyz</a>.</p>
 				</div>
 				<div class="flex justify-start mt-4 items-center">
 					{socialMedia.map(sm => (
-						<a href={sm.url} target="blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2  rounded-full bg-base-100/50 backdrop-blur-md" title={sm.name}>
+						<a href={sm.url} target="_blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2 rounded-full bg-base-100/50 hover:bg-base-200/50 transition-all backdrop-blur-md" title={sm.name}>
 							<Icon name={sm.icon} class="xl:max-w-[2em] xl:h-8 md:max-w-[1.75em] md:h-7 max-w-[1.5em] h-6"/>
 						</a>
 					))}
