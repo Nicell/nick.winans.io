@@ -7,7 +7,11 @@ export async function get(context) {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: context.site,
-    items: await pagesGlobToRssItems(import.meta.glob("./blog/**/index.mdx")),
+    items: (
+      await pagesGlobToRssItems(import.meta.glob("./blog/**/index.mdx"))
+    ).sort(
+      (a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf()
+    ),
     customData: `<language>en-us</language>`,
   });
 }
