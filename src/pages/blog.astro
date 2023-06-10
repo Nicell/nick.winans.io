@@ -2,7 +2,7 @@
 import { Picture } from '@astrojs/image/components';
 import Layout from '../layouts/Layout.astro';
 let allPosts = await Astro.glob('./blog/**/index.mdx');
-allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 const heroes = (await import.meta.glob("./blog/**/hero.png"));
 await Promise.all(allPosts.map(async (post) => {
   post.frontmatter.hero = (await heroes[`.${post.url}/hero.png`]()).default;
@@ -20,7 +20,7 @@ await Promise.all(allPosts.map(async (post) => {
             <div class="card-body p-6">
               <h2 class="font-display card-title line-clamp-2 group-hover:underline">{post.frontmatter.title}</h2>
               <div class="flex items-center">
-                <span>{new Date(post.frontmatter.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
+                <span>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
                 <span class="divider divider-horizontal mx-0"/>
                 <span class="badge badge-outline">{post.frontmatter.minutesRead} min read</span>
               </div>

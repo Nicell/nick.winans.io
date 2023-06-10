@@ -8,15 +8,14 @@ export interface Props {
     title: string;
     url: string;
     description: string;
-    date: string;
+    pubDate: string;
     minutesRead: string;
-    hero: string;
-  }
+   }
 }
 const { content } = Astro.props as Props;
 const heroes = (await import.meta.glob("../pages/blog/**/hero.png"));
 const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
-const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.date)}&minutes=${content.minutesRead}`;
+const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.pubDate)}&minutes=${content.minutesRead}`;
 ---
 
 <Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true} og={og}>
@@ -28,7 +27,7 @@ const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.
     <h1 class="font-display mb-0">{content.title}</h1>
     <p class="text-xl mt-3 mb-4">{content.description}</p>
     <div class="flex items-center pl-2 mb-8">
-      <span>{new Date(content.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
+      <span>{new Date(content.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
       <span class="divider divider-horizontal"/>
       <span class="badge badge-outline">{content.minutesRead} min read</span>
     </div>

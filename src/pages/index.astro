@@ -3,7 +3,7 @@ import { Picture } from '@astrojs/image/components';
 import { Icon } from 'astro-iconify';
 import Layout from '../layouts/Layout.astro';
 let allPosts = await Astro.glob('./blog/**/index.mdx');
-allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 let recentPosts = allPosts.slice(0, 3);
 let socialMedia = [
 	{
@@ -62,7 +62,7 @@ let socialMedia = [
 						<h3 class="text-lg font-medium leading-5 mb-1 group-hover:underline dark:text-blue-200">{post.frontmatter.title}</h3>
 						<p class="opacity-85 font-light leading-5 mb-1">{post.frontmatter.description}</p>
 						<div class="flex flex-wrap opacity-80 items-center">
-							<p class="text-sm font-normal leading-5">{new Date(post.frontmatter.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</p>
+							<p class="text-sm font-normal leading-5">{new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</p>
 							<span class="divider divider-horizontal mx-0"/>
 							<span class="badge badge-sm badge-outline">{post.frontmatter.minutesRead} min read</span>
 						</div>
