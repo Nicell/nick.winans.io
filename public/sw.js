@@ -1,4 +1,14 @@
 self.addEventListener("activate", function (e) {
+  e.waitUntil(
+    caches.keys().then((keyList) =>
+      Promise.all(
+        keyList.map((key) => {
+          return caches.delete(key);
+        })
+      )
+    )
+  );
+
   self.registration
     .unregister()
     .then(function () {
