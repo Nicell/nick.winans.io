@@ -19,6 +19,7 @@ const { title, description, og, blog } = Astro.props as Props;
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<meta name="view-transition" content="same-origin" />
 	{og && (
 		<meta name="twitter:image:src" content={og} />
 		<meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +34,7 @@ const { title, description, og, blog } = Astro.props as Props;
 		<meta property="og:site_name" content="nick.winans.io" />
 		<meta property="og:type" content={blog ? 'article' : 'website'} />
 	)}
-	<style>
+	<style is:global>
 		@font-face {
 			font-family: "Geologica";
 			src: url("/fonts/Geologica.woff2") format("woff2");
@@ -62,7 +63,112 @@ const { title, description, og, blog } = Astro.props as Props;
 			ascent-override: 102%;
 			src: local("Arial Black");
 		}
+
+		@keyframes fade-in {
+			from {
+				opacity: 0;
+			}
+		}
+
+		@keyframes fade-out {
+			to {
+				opacity: 0;
+			}
+		}
+
+		@keyframes slide-from-right {
+			from {
+				transform: translateX(30px);
+			}
+		}
+
+		@keyframes slide-to-left {
+			to {
+				transform: translateX(-30px);
+			}
+		}
+
+
+
+		::view-transition-image-pair(*) {
+			isolation: none;
+			animation: none;
+			mix-blend-mode: normal;
+			contain: paint;
+		}
+		::view-transition-old(*),
+		::view-transition-new(*) {
+		}
+
+		header > a {
+			view-transition-name: header-logo;
+			contain: paint;
+			mix-blend-mode: normal;
+		}
+
+		header > div {
+			view-transition-name: header-theme;
+			contain: paint;
+			mix-blend-mode: normal;
+		}
+
+		::view-transition-old(root) {
+			animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+				300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+		}
+
+		::view-transition-new(root) {
+			animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+				300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+		}
+
 	</style>
+	<script is:inline>
+		async function getHTMLFragment(pathname) {
+			console.log('fetch')
+			const response = await fetch(`${pathname}`)
+			const html = await response.text()
+			// console.log('here')
+			const res = new DOMParser().parseFromString(html, 'text/html');
+			// console.log('parsd')
+			return res;
+		}
+
+		function updateTheDOMSomehow(html) {
+			// console.log(document.querySelector('main').innerHTML)
+			// document.header.innerHTML = html.querySelector('head').innerHTML
+			document.body.innerHTML = html.querySelector('body').innerHTML
+			// console.log(document.querySelector('main').innerHTML)
+			// document.open()
+			// document.write(html)
+			// document.close()
+		}
+
+		navigation.addEventListener('navigate', (navigateEvent) => {
+			const url = new URL(navigateEvent.destination.url)
+
+			if (location.pathname.startsWith('/blog') && url.pathname.startsWith('/blog')) {
+				console.log('test')
+				navigateEvent.intercept({
+					async handler() {
+						const html = await getHTMLFragment(url.pathname)
+						if (!document.startViewTransition) {
+							console.log('sad')
+							updateTheDOMSomehow(html)
+							return
+						}
+						console.log('happy')
+
+						// Otherwise, update the DOM within a transition
+						const transition = document.startViewTransition(() => {
+							updateTheDOMSomehow(html)
+						})
+						await transition.finished
+					},
+				})
+			}
+		})
+	</script>
 </head>
 <body>
 	<Header blog={blog}/>
