@@ -22,7 +22,7 @@ const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.
   <main class="container mx-auto max-w-screen-md p-4 prose prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
     <Picture formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 mb-6 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <div class="mb-2 not-prose">
-      <a class="link" href="/blog">← Go Back</a>
+      <a rel="prefetch" class="link" href="/blog">← Go Back</a>
     </div>  
     <h1 class="font-display mb-0">{content.title}</h1>
     <p class="text-xl mt-3 mb-4">{content.description}</p>

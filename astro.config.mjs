@@ -8,6 +8,7 @@ import rehypeSlug from 'rehype-slug';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import {h, s} from 'hastscript'
 import image from "@astrojs/image";
+import prefetch from "@astrojs/prefetch"; 
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +18,7 @@ export default defineConfig({
   },
   integrations: [tailwind(), sitemap(), image({
     serviceEntryPoint: '@astrojs/image/sharp'
-  }), robotsTxt(), mdx({
+  }), robotsTxt(), prefetch(), mdx({
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
       behavior: 'before',
       content: h('span.icon-link', [
