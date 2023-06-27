@@ -33,9 +33,23 @@ const { title, description, og, blog } = Astro.props as Props;
 		<meta property="og:site_name" content="nick.winans.io" />
 		<meta property="og:type" content={blog ? 'article' : 'website'} />
 	)}
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Geologica&family=JetBrains+Mono:wght@400;600&family=Lexend+Deca:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+	<style>
+		@font-face {
+			font-family: "Geologica";
+			src: url("/fonts/Geologica.ttf") format("truetype");
+			font-display: fallback;
+    }
+		@font-face {
+			font-family: "Lexend Deca";
+			src: url("/fonts/LexendDeca.ttf") format("truetype");
+			font-display: fallback;
+    }
+		@font-face {
+			font-family: "JetBrains Mono";
+			src: url("/fonts/JetBrainsMono.ttf") format("truetype");
+			font-display: fallback;
+    }
+	</style>
 </head>
 <body>
 	<Header blog={blog}/>
