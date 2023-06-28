@@ -12,7 +12,7 @@ await Promise.all(allPosts.map(async (post) => {
 	<main class="container max-w-screen-xl mx-auto">
 		<h1 class="text-5xl text-center pb-2 font-display">Blog</h1>
     <p class="text-center">Thoughts and what I'm working on.</p>
-    <ul class="grid grid-cols-[repeat(auto-fit,_384px)] justify-center gap-8 py-8">
+    <ul class="grid grid-cols-[repeat(auto-fit,_384px)] justify-center gap-8 p-8">
       {allPosts.map((post, index) => (
         <li class="card hover:shadow-lg transition-all shadow w-96 bg-base-100 dark:bg-neutral overflow-hidden group">
           <a rel="prefetch" href={post.url} class="-outline-offset-4">
