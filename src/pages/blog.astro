@@ -10,11 +10,11 @@ await Promise.all(allPosts.map(async (post) => {
 ---
 <Layout title="Blog" description="Nick Winans's Blog">
 	<main class="container max-w-screen-xl mx-auto">
-		<h1 class="text-5xl text-center pb-2">Blog</h1>
+		<h1 class="text-5xl text-center pb-2 font-display">Blog</h1>
     <p class="text-center">Thoughts and what I'm working on.</p>
-		<ul class="flex flex-wrap justify-evenly">
-			{allPosts.map((post, index) => (
-        <li class="card hover:shadow-lg transition-all shadow w-96 m-4 bg-base-100 dark:bg-neutral overflow-hidden group">
+    <ul class="grid grid-cols-[repeat(auto-fit,_384px)] justify-center gap-8 py-8">
+      {allPosts.map((post, index) => (
+        <li class="card hover:shadow-lg transition-all shadow w-96 bg-base-100 dark:bg-neutral overflow-hidden group">
           <a rel="prefetch" href={post.url} class="-outline-offset-4">
             <Picture formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 aspect-[16/9]" alt="" loading={index < 3 ? 'eager' : 'lazy'} widths={[800, 400]} sizes="(max-width: 400px) 100vw, 400px" aspectRatio="16:9" src={post.frontmatter.hero}/>
             <div class="card-body p-6">
@@ -29,6 +29,6 @@ await Promise.all(allPosts.map(async (post) => {
           </a>
         </li>
       ))}
-		</ul>
+    </ul>
 	</main>
 </Layout>
