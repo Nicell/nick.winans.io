@@ -1,8 +1,8 @@
 import React from "react";
 import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
-import LexendBlack from "../../public/fonts/LexendDeca-Black.ttf";
-import Lexend from "../../public/fonts/LexendDeca-ExtraBold.ttf";
-import Geologica from "../../public/fonts/Geologica-Regular.ttf";
+import LexendBlack from "../fonts/LexendDeca-Black.bin";
+import Lexend from "../fonts/LexendDeca-ExtraBold.bin";
+import Geologica from "../fonts/Geologica-Regular.bin";
 
 export const onRequest = async ({request}) => {
   const searchParams = new URLSearchParams(new URL(request.url).search);
