@@ -7,18 +7,11 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import { remarkReadingTime } from './remark-reading-time.mjs';
 import {h, s} from 'hastscript'
-import image from "@astrojs/image";
-import prefetch from "@astrojs/prefetch"; 
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://nick.winans.io",
-  build: {
-    inlineStylesheets: 'auto'
-  },
-  integrations: [tailwind(), sitemap(), image({
-    serviceEntryPoint: '@astrojs/image/sharp'
-  }), robotsTxt(), prefetch(), mdx({
+  integrations: [tailwind(), sitemap(), robotsTxt(), mdx({
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
       behavior: 'before',
       content: h('span.icon-link', [
@@ -36,5 +29,6 @@ export default defineConfig({
     shikiConfig: {
       theme: 'material-theme-palenight'
     }
-  }
+  },
+  prefetch: true
 });

@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "astro:assets";
 import probe from 'probe-image-size';
 
 interface Props {
@@ -11,7 +11,9 @@ interface Props {
 
 const { src, width, formats, alt } = Astro.props;
 const imageProbe = await probe(src);
+const aspectRatio = imageProbe.width/imageProbe.height;
 const w = Math.min(width || imageProbe.width, 736);
+const h = w/aspectRatio;
 ---
 
-<Picture src={src} class="loading-shimmer" formats={formats || ['avif', 'webp', 'png']} alt={alt || ''} aspectRatio={imageProbe.width/imageProbe.height} style={`width: ${w}px; aspect-ratio: ${imageProbe.width}/${imageProbe.height}`} widths={[w*2, w*1.5, w, w*.75, w*.5].filter(w => w <= imageProbe.width)} sizes={`(max-width ${w}px) 100%, ${w}px`} width={w} />
+<Picture src={src} class="loading-shimmer" formats={formats || ['avif', 'webp', 'png']} alt={alt || ''}  width={w} height={h} style={`width: ${w}px; aspect-ratio: ${imageProbe.width}/${imageProbe.height}`} widths={[w*2, w*1.5, w, w*.75, w*.5].filter(w => w <= imageProbe.width)} sizes={`(max-width ${w}px) 100%, ${w}px`} />
