@@ -22,7 +22,7 @@ let socialMedia = [
 		name: 'LinkedIn'
 	},
 	{
-		url: 'https://discord.com/invite/6kRybj4Y',
+		url: 'https://discord.com/users/132232584632598528',
 		icon: 'fa6-brands:discord',
 		name: 'Discord'
 	},
@@ -44,7 +44,7 @@ let socialMedia = [
 				</div>
 				<div class="flex justify-start mt-4 items-center">
 					{socialMedia.map(sm => (
-						<a href={sm.url} target="_blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2 rounded-full bg-base-100/50 hover:bg-base-200/50 transition-all backdrop-blur-md" title={sm.name}>
+						<a href={sm.url} target="_blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2 rounded-full bg-base-100/50 hover:bg-base-200/75 hover:scale-105 active:bg-base-300 active:scale-95 transition-all backdrop-blur-md" title={sm.name}>
 							<Icon name={sm.icon} class="xl:max-w-[2em] xl:h-8 md:max-w-[1.75em] md:h-7 max-w-[1.5em] h-6"/>
 						</a>
 					))}

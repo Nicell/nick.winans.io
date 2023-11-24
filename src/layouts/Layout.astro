@@ -1,6 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import Header from "../components/Header.astro";
-import Theme from "../components/Theme.astro";
 export interface Props {
 	title: string;
 	description: string;
@@ -63,6 +63,7 @@ const { title, description, og, blog } = Astro.props as Props;
 			src: local("Arial Black");
 		}
 	</style>
+	<ViewTransitions />
 </head>
 <body>
 	<Header blog={blog}/>
