@@ -18,7 +18,7 @@ await Promise.all(allPosts.map(async (post) => {
           <a rel="prefetch" href={post.url} class="-outline-offset-4">
             <Picture transition:name={post.frontmatter.title} formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 aspect-[16/9] rounded-t-xl" alt="" loading={index < 3 ? 'eager' : 'lazy'} widths={[800, 400]} sizes="(max-width: 400px) 100vw, 400px" aspectRatio="16:9" src={post.frontmatter.hero}/>
             <div class="card-body p-6">
-              <h2 class="font-display card-title line-clamp-2 group-hover:underline">{post.frontmatter.title}</h2>
+              <h2 class="font-display card-title line-clamp-3 group-hover:underline">{post.frontmatter.title}</h2>
               <div class="flex items-center">
                 <span>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
                 <span class="divider divider-horizontal mx-0"/>
