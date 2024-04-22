@@ -1,0 +1,149 @@
+---
+import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+
+const { headings } = Astro.props;
+const toc = buildToc(headings);
+
+function buildToc(headings) {
+    const toc = [];
+    const parentHeadings = new Map();
+    headings.forEach((h) => {
+        const heading = { ...h, subheadings: [] };
+        parentHeadings.set(heading.depth, heading);
+        if (heading.depth === 2) {
+            toc.push(heading);
+        } else {
+            parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+        }
+    });
+    return toc;
+}
+---
+
+<nav class="toc hidden lg:block sticky self-start top-0 pt-6 not-prose grow">
+    <ul class="grid gap-3 pl-4">
+        {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+    </ul>
+    <svg class="toc-progress -z-10" xmlns="http://www.w3.org/2000/svg">
+        <path
+            class="toc-marker text-primary -translate-x-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-dasharray="1 0 0 1000"
+            stroke-dashoffset="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+    </svg>
+</nav>
+
+<script>
+const linkStarts = new WeakMap();
+const linkEnds = new WeakMap();
+
+let intersection = addIntersectionObserver();
+let resize = addResizeObserver();
+
+function addIntersectionObserver() {
+  const observer = new IntersectionObserver((sections) => {
+    sections.forEach((section) => {
+      const heading = section.target.querySelector("h2, h3, h4, h5");
+      if (!heading) return;
+      const id = heading.getAttribute("id");
+
+      const link = document.querySelector(`nav.toc li a[href="#${id}"]`);
+      if (!link) return;
+
+      const addRemove = section.intersectionRatio > 0 ? "add" : "remove";
+      link.classList[addRemove]("active");
+      link.classList[addRemove]("text-primary");
+    });
+    updatePath();
+  });
+
+  document.querySelectorAll("article section").forEach((section) => {
+    observer.observe(section);
+  });
+  return observer;
+}
+
+function addResizeObserver() {
+  if (!document.querySelector("nav.toc")) return;
+  const observer = new ResizeObserver(() => {
+    drawPath();
+    updatePath();
+  });
+  observer.observe(document.querySelector("nav.toc"));
+  return observer;
+}
+
+document.addEventListener('astro:after-preparation', (e) => {
+    intersection.disconnect()
+    resize.disconnect()
+});
+
+document.addEventListener('astro:after-swap', (e) => {
+    intersection = addIntersectionObserver();
+    resize = addResizeObserver();
+});
+
+function drawPath() {
+  const path = document.querySelector("path.toc-marker");
+  const links = Array.from(document.querySelectorAll("nav.toc a"));
+  if (!links.length) return;
+
+  let pathData = [];
+  let left = 0;
+
+  links.forEach((link, i) => {
+    const x = link.offsetLeft;
+    const y = link.offsetTop;
+    const height = link.offsetHeight;
+    if (i === 0) {
+      linkStarts.set(link, 0);
+      pathData.push("M", x, y, "L", x, y + height);
+    } else {
+      if (left !== x) pathData.push("L", left, y-5);
+      pathData.push("L", x, y-5);
+      path.setAttribute("d", pathData.join(" "));
+      linkStarts.set(link, path.getTotalLength());
+      pathData.push("L", x, y + height);
+    }
+
+    left = x;
+    path.setAttribute("d", pathData.join(" "));
+    linkEnds.set(link, path.getTotalLength());
+  });
+}
+
+function updatePath() {
+  const path = document.querySelector("path.toc-marker");
+  const pathLength = path.getTotalLength();
+  const activeLinks = document.querySelectorAll("nav.toc a.active");
+  let linkStart = pathLength;
+  let linkEnd = 0;
+  activeLinks.forEach((link) => {
+    linkStart = Math.min(linkStart, linkStarts.get(link));
+    linkEnd = Math.max(linkEnd, linkEnds.get(link));
+  });
+  path.style.display = activeLinks.length ? "inline" : "none";
+  path.setAttribute(
+    "stroke-dasharray",
+    `1 ${linkStart} ${linkEnd - linkStart} ${pathLength}`
+  );
+}
+</script>
+
+<style>
+    .toc-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    path.toc-marker {
+        transition: stroke-dasharray 0.3s ease;
+    }
+</style>
