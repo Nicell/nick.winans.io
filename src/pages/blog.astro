@@ -8,7 +8,7 @@ await Promise.all(allPosts.map(async (post) => {
   post.frontmatter.hero = (await heroes[`.${post.url}/hero.png`]()).default;
 }));
 ---
-<Layout title="Blog" description="Nick Winans's Blog">
+<Layout title="Blog - Nick Winans" description="Nick Winans's Blog">
 	<main class="container max-w-screen-xl mx-auto">
 		<h1 class="text-5xl text-center pb-2 font-display">Blog</h1>
     <p class="text-center">Thoughts and what I'm working on.</p>

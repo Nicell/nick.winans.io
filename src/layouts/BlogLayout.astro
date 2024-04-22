@@ -18,7 +18,7 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
 const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.pubDate)}&minutes=${content.minutesRead}`;
 ---
 
-<Layout title={content.title + ' - nick.winans.io'} description={content.description} blog={true} og={og}>
+<Layout title={content.title + ' - Nick Winans'} description={content.description} blog={true} og={og}>
   <main class="container mx-auto max-w-screen-md p-4 prose dark:prose-a:text-blue-400 prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
     <Picture transition:name={content.title} formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 mb-6 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" aspectRatio="16:9" src={hero}/>
     <div class="mb-2 not-prose">
