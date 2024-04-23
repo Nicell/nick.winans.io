@@ -18,7 +18,6 @@
     "@iconify-json/fa6-brands": "^1.1.19",
     "@iconify-json/fluent": "^1.1.53",
     "@shikijs/transformers": "^1.3.0",
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.12",
     "astro": "^4.6.3",
     "astro-icon": "^1.1.0",

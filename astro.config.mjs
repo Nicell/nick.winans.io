@@ -70,6 +70,6 @@ export default defineConfig({
   },
   prefetch: true,
   image: {
-    domains: ["imgur.com"],
+    remotePatterns: [{ protocol: "https" }],
   },
 });
