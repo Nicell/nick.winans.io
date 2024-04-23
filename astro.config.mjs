@@ -13,11 +13,12 @@ import {
 } from '@shikijs/transformers'
 import { addCopyButton } from 'shiki-transformer-copy-button'
 import sectionize from '@hbsnow/rehype-sectionize';
+ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://nick.winans.io",
-  integrations: [tailwind(), sitemap(), robotsTxt(), mdx({
+  integrations: [tailwind(), sitemap(), robotsTxt(), icon(), mdx({
     rehypePlugins: [rehypeSlug, sectionize, [rehypeAutolinkHeadings, {
       behavior: 'before',
       content: h('span.icon-link', [

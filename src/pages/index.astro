@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
-import { Icon } from 'astro-iconify';
+import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
 let allPosts = await Astro.glob('./blog/**/index.mdx');
 allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
@@ -45,7 +45,7 @@ let socialMedia = [
 				<div class="flex justify-start mt-4 items-center">
 					{socialMedia.map(sm => (
 						<a href={sm.url} target="_blank" class="xl:mr-4 mr-3 xl:p-4 md:p-3 p-2 rounded-full bg-base-100/50 hover:bg-base-200/75 hover:scale-105 active:bg-base-300 active:scale-95 transition-all backdrop-blur-md" title={sm.name}>
-							<Icon name={sm.icon} class="xl:max-w-[2em] xl:h-8 md:max-w-[1.75em] md:h-7 max-w-[1.5em] h-6"/>
+							<Icon name={sm.icon} class="xl:max-w-[2em] xl:h-8 md:max-w-[1.75em] md:h-7 max-w-[1.5em] w-full h-6"/>
 						</a>
 					))}
 				</div>
