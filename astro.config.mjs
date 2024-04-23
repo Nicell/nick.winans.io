@@ -1,19 +1,19 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import robotsTxt from "astro-robots-txt";
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeSlug from 'rehype-slug';
-import { remarkReadingTime } from './remark-reading-time.mjs';
-import {h, s} from 'hastscript'
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
+import { remarkReadingTime } from "./remark-reading-time.mjs";
+import { h, s } from "hastscript";
 import {
   transformerMetaHighlight,
-  transformerMetaWordHighlight
-} from '@shikijs/transformers'
-import { addCopyButton } from 'shiki-transformer-copy-button'
-import sectionize from '@hbsnow/rehype-sectionize';
- import icon from "astro-icon";
+  transformerMetaWordHighlight,
+} from "@shikijs/transformers";
+import { addCopyButton } from "./shiki-transformer-copy-button.mjs";
+import sectionize from "@hbsnow/rehype-sectionize";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -70,6 +70,6 @@ export default defineConfig({
   },
   prefetch: true,
   image: {
-    remotePatterns: [{ protocol: "https" }],
+    domains: ["imgur.com"],
   },
 });
