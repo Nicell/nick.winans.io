@@ -20,7 +20,7 @@ const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
 const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.pubDate)}&minutes=${content.minutesRead}`;
 ---
 
-<Layout title={content.title + ' - Nick Winans'} description={content.description} blog={true} og={og}>
+<Layout title={content.title} description={content.description} blog={true} og={og}>
   <main class="container mx-auto max-w-screen-lg p-4 prose dark:prose-a:text-blue-400 prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
     <div class="mb-2 not-prose">
       <a rel="prefetch" class="link" href="/blog">← Go Back</a>
