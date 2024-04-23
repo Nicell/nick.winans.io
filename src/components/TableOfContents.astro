@@ -78,8 +78,8 @@ function buildToc(headings) {
   }
 
   document.addEventListener("astro:after-preparation", (e) => {
-    intersection.disconnect();
-    resize.disconnect();
+    if (intersection) intersection.disconnect();
+    if (resize) resize.disconnect();
   });
 
   document.addEventListener("astro:after-swap", (e) => {
