@@ -8,7 +8,7 @@ export function addCopyButton() {
         "button",
         {
           class: "copy",
-          name: "Copy",
+          "aria-label": "Copy Code",
           "data-code": this.source,
           onclick: `
           navigator.clipboard.writeText(this.dataset.code);
