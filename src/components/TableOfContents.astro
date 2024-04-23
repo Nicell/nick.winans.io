@@ -103,8 +103,8 @@ function buildToc(headings) {
         linkStarts.set(link, 0);
         pathData.push("M", x, y, "L", x, y + height);
       } else {
-        if (left !== x) pathData.push("L", left, y - 5);
-        pathData.push("L", x, y - 5);
+        if (left !== x) pathData.push("L", left, y - 6);
+        pathData.push("L", x, y - 6);
         path.setAttribute("d", pathData.join(" "));
         linkStarts.set(link, path.getTotalLength());
         pathData.push("L", x, y + height);
