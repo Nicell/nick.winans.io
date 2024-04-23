@@ -34,7 +34,7 @@ const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.
     </div>
     <div class="flex justify-center gap-6">
       <article class="max-w-prose w-full">
-        <Picture transition:name={content.title} formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 mb-6 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" src={hero}/>
+        <Picture transition:name={content.title} formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 mb-6 aspect-[16/9]" alt="" widths={[1600, 800]} sizes="(max-width: 800px) 100vw, 800px" src={hero} loading="eager" />
         <slot />
       </article>
       <TableOfContents headings={headings} />
