@@ -48,7 +48,7 @@ export default defineConfig({
               ),
             ]),
             properties: { ariaHidden: true, tabIndex: -1 },
-            group: h("span.heading-group.font-display"),
+            group: h("div.heading-group.font-display"),
           },
         ],
       ],
