@@ -17,7 +17,7 @@ export interface Props {
 const { content, headings } = Astro.props as Props;
 const heroes = (await import.meta.glob("../pages/blog/**/hero.png"));
 const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
-const og = `https://og.winans.io/api/blog-og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.pubDate)}&minutes=${content.minutesRead}`;
+const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.pubDate)}&minutes=${content.minutesRead}`;
 ---
 
 <Layout title={content.title} description={content.description} blog={true} og={og}>

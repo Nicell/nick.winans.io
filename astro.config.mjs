@@ -31,7 +31,7 @@ export default defineConfig({
           rehypeAutolinkHeadings,
           {
             behavior: "before",
-            content: h("span.icon-link", [
+            content: h("span.icon-link.text-primary", [
               s(
                 "svg",
                 {

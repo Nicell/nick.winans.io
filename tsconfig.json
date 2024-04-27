@@ -1,3 +1,7 @@
 {
+  "compilerOptions": {
+    "jsx": "react",
+    "types": ["@cloudflare/workers-types"]
+  },
   "extends": "astro/tsconfigs/base"
 }

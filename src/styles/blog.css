@@ -17,7 +17,18 @@ article .heading-group {
   }
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (min-width: 820px max-width: 1024px) {
+  .heading-group>a {
+    padding-right: 0.1rem;
+
+    & svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 820px), screen and (min-width: 1024px) and (max-width: 1080px) {
   .heading-group > a {
     padding-right: 0.1rem;
 
