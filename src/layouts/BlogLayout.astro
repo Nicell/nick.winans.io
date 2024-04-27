@@ -25,7 +25,7 @@ const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(content.ti
     <div class="mb-2 not-prose">
       <a rel="prefetch" class="link" href="/blog">← Go Back</a>
     </div>  
-    <h1 class="font-display mb-0">{content.title}</h1>
+    <h1 class="font-display mb-0 font-bold">{content.title}</h1>
     <p class="text-xl mt-3 mb-4">{content.description}</p>
     <div class="flex items-center pl-2 mb-2">
       <span>{new Date(content.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
