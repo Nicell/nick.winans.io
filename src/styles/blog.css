@@ -46,13 +46,16 @@ article .heading-group:hover a {
 .loading-shimmer {
   position: relative;
   overflow: hidden;
-  background-color: hsl(var(--b2));
+  background-color: oklch(var(--b2));
   animation: shimmer 1s infinite alternate;
 }
 
 @keyframes shimmer {
+  0% {
+    background-color: oklch(var(--b1));
+  }
   100% {
-    background-color: hsl(var(--b1));
+    background-color: oklch(var(--n));
   }
 }
 
