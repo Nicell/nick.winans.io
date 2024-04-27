@@ -12,7 +12,7 @@ interface Props {
 const { src, width, formats, alt } = Astro.props;
 const imageProbe = await probe(src);
 const aspectRatio = imageProbe.width/imageProbe.height;
-const w = Math.min(width || imageProbe.width, 736);
+const w = Math.min(width || imageProbe.width, 706);
 const h = w/aspectRatio;
 ---
 
