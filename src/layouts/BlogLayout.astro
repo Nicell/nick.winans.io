@@ -1,8 +1,8 @@
 ---
-import { Picture } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-import TableOfContents from '../components/TableOfContents.astro';
-import '../styles/blog.css';
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import "../styles/blog.css";
 
 export interface Props {
   content: {
@@ -11,30 +11,64 @@ export interface Props {
     description: string;
     pubDate: string;
     minutesRead: string;
-   },
-   headings: any;
+  };
+  headings: any;
 }
 const { content, headings } = Astro.props as Props;
-const heroes = (await import.meta.glob("../pages/blog/**/hero.png"));
+const heroes = await import.meta.glob("../pages/blog/**/hero.png");
 const hero = (await heroes[`../pages${content.url}/hero.png`]()).default;
 const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(content.title)}&description=${encodeURIComponent(content.description)}&date=${encodeURIComponent(content.pubDate)}&minutes=${content.minutesRead}`;
 ---
 
-<Layout title={content.title} description={content.description} blog={true} og={og}>
-  <main class="container mx-auto max-w-screen-lg p-4 prose dark:prose-a:text-blue-400 prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg">
+<Layout
+  title={content.title}
+  description={content.description}
+  blog={true}
+  og={og}
+>
+  <main
+    class="container mx-auto max-w-screen-lg p-4 prose dark:prose-a:text-blue-400 prose-a:text-blue-600 prose-img:rounded-xl prose-img:shadow-lg"
+  >
     <div class="mb-2 not-prose">
       <a rel="prefetch" class="link" href="/blog">← Go Back</a>
-    </div>  
-    <h1 class="font-display mb-0 font-bold">{content.title}</h1>
-    <p class="text-xl mt-3 mb-4">{content.description}</p>
+    </div>
+    <h1
+      transition:name={content.title + "-title"}
+      class="font-display mb-0 font-bold"
+    >
+      {content.title}
+    </h1>
+    <p transition:name={content.title + "-description"} class="text-xl mt-3 mb-4">
+      {content.description}
+    </p>
     <div class="flex items-center pl-2 mb-2">
-      <span>{new Date(content.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
-      <span class="divider divider-horizontal"/>
-      <span class="badge badge-outline">{content.minutesRead} min read</span>
+      <span transition:name={content.title + "-date"}
+        >{
+          new Date(content.pubDate).toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        }</span
+      >
+      <span class="divider divider-horizontal"></span>
+      <span
+        transition:name={content.title + "-mins"}
+        class="badge badge-outline">{content.minutesRead} min read</span
+      >
     </div>
     <div class="flex justify-center gap-6">
       <article class="max-w-prose w-full">
-        <Picture transition:name={content.title} formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 mb-6 aspect-[16/9] loading-shimmer" alt="" widths={[1600, 800, 600, 400]} sizes="(max-width: 800px) 100vw, 800px" src={hero} loading="eager" />
+        <Picture
+          transition:name={content.title}
+          formats={["avif", "webp", "jpeg"]}
+          class="w-full mt-0 mb-6 aspect-[16/9] loading-shimmer"
+          alt=""
+          widths={[1600, 800, 600, 400]}
+          sizes="(max-width: 800px) 100vw, 800px"
+          src={hero}
+          loading="eager"
+        />
         <slot />
       </article>
       <TableOfContents headings={headings} />
@@ -45,12 +79,12 @@ const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(content.ti
   </footer>
   <style>
     @font-face {
-			font-family: "JetBrains Mono";
-			src: url("/fonts/JetBrainsMono.woff2") format("woff2");
-			font-display: fallback;
-			unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-				U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
-				U+2212, U+2215, U+FEFF, U+FFFD;
+      font-family: "JetBrains Mono";
+      src: url("/fonts/JetBrainsMono.woff2") format("woff2");
+      font-display: fallback;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+        U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
     }
   </style>
 </Layout>

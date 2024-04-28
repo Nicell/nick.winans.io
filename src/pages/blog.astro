@@ -1,34 +1,72 @@
 ---
-import { Picture } from 'astro:assets';
-import Layout from '../layouts/Layout.astro';
-let allPosts = await Astro.glob('./blog/**/index.mdx');
-allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
-const heroes = (await import.meta.glob("./blog/**/hero.png"));
-await Promise.all(allPosts.map(async (post) => {
-  post.frontmatter.hero = (await heroes[`.${post.url}/hero.png`]()).default;
-}));
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+let allPosts = await Astro.glob("./blog/**/index.mdx");
+allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+);
+const heroes = await import.meta.glob("./blog/**/hero.png");
+await Promise.all(
+  allPosts.map(async (post) => {
+    post.frontmatter.hero = (await heroes[`.${post.url}/hero.png`]()).default;
+  })
+);
 ---
+
 <Layout title="Blog - Nick Winans" description="Nick Winans's Blog">
-	<main class="container max-w-screen-xl mx-auto">
-		<h1 class="text-5xl text-center pb-2 font-display font-bold">Blog</h1>
+  <main class="container max-w-screen-xl mx-auto">
+    <h1 class="text-5xl text-center pb-2 font-display font-bold">Blog</h1>
     <p class="text-center">Thoughts and what I'm working on.</p>
-    <ul class="grid grid-cols-[repeat(auto-fit,_384px)] justify-center gap-8 p-8">
-      {allPosts.map((post, index) => (
-        <li class="card hover:shadow-lg transition-all shadow w-96 bg-base-100 dark:bg-neutral overflow-hidden group rounded-xl">
-          <a rel="prefetch" href={post.url} class="-outline-offset-4">
-            <Picture transition:name={post.frontmatter.title} formats={['avif', 'webp', 'jpeg']} class="w-full mt-0 aspect-[16/9] rounded-t-xl" alt="" loading={index < 3 ? 'eager' : 'lazy'} widths={[800, 400]} sizes="(max-width: 400px) 100vw, 400px" aspectRatio="16:9" src={post.frontmatter.hero}/>
-            <div class="card-body p-6">
-              <h2 class="font-display card-title line-clamp-3 group-hover:underline">{post.frontmatter.title}</h2>
-              <div class="flex items-center">
-                <span>{new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}</span>
-                <span class="divider divider-horizontal mx-0"/>
-                <span class="badge badge-outline">{post.frontmatter.minutesRead} min read</span>
+    <ul
+      class="grid grid-cols-[repeat(auto-fit,_384px)] justify-center gap-8 p-8"
+    >
+      {
+        allPosts.map((post, index) => (
+          <li class="card hover:shadow-lg transition-all shadow w-96 bg-base-100 dark:bg-neutral overflow-hidden group rounded-xl">
+            <a rel="prefetch" href={post.url} class="-outline-offset-4">
+              <Picture
+                transition:name={post.frontmatter.title}
+                formats={["avif", "webp", "jpeg"]}
+                class="w-full mt-0 aspect-[16/9] rounded-t-xl"
+                alt=""
+                loading={index < 3 ? "eager" : "lazy"}
+                widths={[800, 400]}
+                sizes="(max-width: 400px) 100vw, 400px"
+                aspectRatio="16:9"
+                src={post.frontmatter.hero}
+              />
+              <div class="card-body p-6">
+                <h2
+                  transition:name={post.frontmatter.title + "-title"}
+                  class="font-display card-title line-clamp-3 group-hover:underline"
+                >
+                  {post.frontmatter.title}
+                </h2>
+                <div class="flex items-center">
+                  <span transition:name={post.frontmatter.title + "-date"}>
+                    {new Date(post.frontmatter.pubDate).toLocaleDateString(
+                      "en-us",
+                      { year: "numeric", month: "short", day: "numeric" }
+                    )}
+                  </span>
+                  <span class="divider divider-horizontal mx-0" />
+                  <span
+                    transition:name={post.frontmatter.title + "-mins"}
+                    class="badge badge-outline"
+                  >
+                    {post.frontmatter.minutesRead} min read
+                  </span>
+                </div>
+                <p transition:name={post.frontmatter.title + "-description"}>
+                  {post.frontmatter.description}
+                </p>
               </div>
-              <p>{post.frontmatter.description}</p>
-            </div>
-          </a>
-        </li>
-      ))}
+            </a>
+          </li>
+        ))
+      }
     </ul>
-	</main>
+  </main>
 </Layout>

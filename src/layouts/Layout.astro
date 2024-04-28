@@ -63,7 +63,7 @@ const { title, description, og, blog } = Astro.props as Props;
 			src: local("Arial Black");
 		}
 	</style>
-	<ViewTransitions />
+	<ViewTransitions fallback="none" />
 </head>
 <body>
 	<Header blog={blog}/>
