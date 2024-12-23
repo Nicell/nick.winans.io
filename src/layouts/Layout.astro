@@ -31,6 +31,15 @@
       U+FEFF, U+FFFD;
   }
 
+  @font-face {
+    font-family: "Courier New Fallback";
+    src: local("Courier New");
+    size-adjust: 100%;
+    ascent-override: 102%;
+    descent-override: normal;
+    line-gap-override: normal;
+  }
+
   :root {
     --dark: oklch(30% 0.01 10);
     --light: oklch(98% 0.015 90);
@@ -39,7 +48,7 @@
   }
 
   body {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "JetBrains Mono", "Courier New Fallback", monospace;
     margin: 0;
     padding: 2em 1em;
     display: flex;
