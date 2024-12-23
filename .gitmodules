@@ -1,0 +1,3 @@
+[submodule "Nicell"]
+	path = Nicell
+	url = https://github.com/Nicell/Nicell

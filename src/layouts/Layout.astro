@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" />
+    <link
+      rel="icon"
+      href="/favicon-dark.svg"
+      media="(prefers-color-scheme: dark)"
+    />
+    <title>Nick Winans</title>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+<style is:global>
+  @font-face {
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 100 800;
+    font-display: swap;
+    src:
+      local("JetBrains Mono"),
+      url(/JetBrainsMono.woff2) format("woff2");
+    unicode-range: U+0000-00A0, U+00A9, U+00AE, U+00B0, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+2000-206F, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+
+  :root {
+    --dark: oklch(30% 0.01 10);
+    --light: oklch(98% 0.015 90);
+    --link-dark: oklch(45% 0.15 250);
+    --link-light: oklch(80% 0.1 250);
+  }
+
+  body {
+    font-family: "JetBrains Mono", monospace;
+    margin: 0;
+    padding: 2em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  html {
+    background-color: var(--light);
+    color: var(--dark);
+  }
+
+  a {
+    color: var(--link-dark);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      background-color: var(--dark);
+      color: var(--light);
+    }
+
+    a {
+      color: var(--link-light);
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    max-width: 50%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+</style>

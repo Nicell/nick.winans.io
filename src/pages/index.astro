@@ -1,0 +1,18 @@
+---
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Me from "../../Nicell/README.md";
+---
+
+<Layout>
+  <Picture
+    src="https://github.com/Nicell.png"
+    width="256"
+    height="256"
+    formats={["avif", "webp"]}
+    loading="eager"
+    quality="80"
+    alt="me"
+  />
+  <Me />
+</Layout>
