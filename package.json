@@ -4,9 +4,10 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run update-submodules && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-submodules": "git submodule foreach git pull origin main"
   },
   "dependencies": {
     "astro": "^5.1.1"
