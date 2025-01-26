@@ -24,7 +24,7 @@ const { title = "Nick Winans", description } = Astro.props;
       rel="alternate"
       type="application/rss+xml"
       title="Nick Winans"
-      href={new URL("feed", Astro.site)}
+      href={new URL("rss.xml", Astro.site)}
     />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
