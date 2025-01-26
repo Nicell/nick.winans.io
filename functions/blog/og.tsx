@@ -1,7 +1,22 @@
 import React from "react";
 import { ImageResponse } from "@cloudflare/pages-plugin-vercel-og/api";
 
-import JetBrainsMono from "../fonts/JetBrainsMono.bin";
+async function loadGoogleFont(font: string, weight = "400") {
+  const url = `https://fonts.googleapis.com/css2?family=${font}:wght@${weight}`;
+  const css = await (await fetch(url)).text();
+  const resource = css.match(
+    /src: url\((.+)\) format\('(opentype|truetype)'\)/
+  );
+
+  if (resource) {
+    const response = await fetch(resource[1]);
+    if (response.status == 200) {
+      return await response.arrayBuffer();
+    }
+  }
+
+  throw new Error("failed to load font data");
+}
 
 export const onRequest: PagesFunction = async ({ request }) => {
   const { searchParams } = new URL(request.url);
@@ -13,23 +28,15 @@ export const onRequest: PagesFunction = async ({ request }) => {
     (
       <div
         style={{
-          backgroundImage:
-            "radial-gradient(ellipse at 50% 0px, #dcfce7, #dbeafe, #f3e8ff)",
+          backgroundColor: "#fcf8ed",
+          color: "#332c2d",
           fontFamily: "JetBrainsMono",
-          borderBottom: "1rem solid #4a00ff",
+          borderBottom: "1rem solid #0056a4",
         }}
         tw="h-full flex flex-col justify-between w-full py-14 px-16 pb-10"
       >
         <div tw="flex flex-col">
-          <div
-            style={{
-              fontFamily: "Lexend",
-              lineHeight: "1.1em",
-            }}
-            tw="pb-5 text-6xl"
-          >
-            {title}
-          </div>
+          <div tw="pb-5 text-6xl font-bold">{title}</div>
           <div
             style={{
               lineHeight: "1.15em",
@@ -46,10 +53,8 @@ export const onRequest: PagesFunction = async ({ request }) => {
               tw="w-36 h-36 rounded-full mr-6"
             />
             <div tw="flex flex-col justify-between py-5">
-              <span tw="text-5xl">Nick Winans</span>
-              <span tw="text-4xl">
-                nick.winans.io
-              </span>
+              <span tw="text-5xl font-bold">Nick Winans</span>
+              <span tw="text-4xl">nick.winans.io</span>
             </div>
           </div>
           <span tw="text-4xl pb-5">
@@ -68,9 +73,16 @@ export const onRequest: PagesFunction = async ({ request }) => {
       fonts: [
         {
           name: "JetBrainsMono",
-          data: JetBrainsMono,
+          data: await loadGoogleFont("JetBrains+Mono"),
           style: "normal",
+          weight: 400,
         },
+        {
+          name: "JetBrainsMono",
+          data: await loadGoogleFont("JetBrains+Mono", "700"),
+          style: "normal",
+          weight: 700,
+        }
       ],
     }
   );
