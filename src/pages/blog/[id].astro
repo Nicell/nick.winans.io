@@ -10,9 +10,14 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
+const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(post.data.title)}&description=${encodeURIComponent(post.data.description)}&date=${encodeURIComponent(post.data.pubDate?.toISOString())}`;
 ---
 
-<Layout title={`${post.data.title} - Nick Winans`} description={post.data.description}>
+<Layout
+  title={`${post.data.title} - Nick Winans`}
+  description={post.data.description}
+  og={og}
+>
   <a href="/blog"><- All posts</a>, <a href="/">Home</a>
   <h1>{post.data.title}</h1>
   <time datetime={post.data.pubDate.toISOString().split("T")[0]}>
