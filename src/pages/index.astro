@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Me from "../../Nicell/README.md";
+import Posts from "../components/Posts.astro";
 ---
 
 <Layout>
@@ -13,6 +14,10 @@ import Me from "../../Nicell/README.md";
     loading="eager"
     quality="80"
     alt="me"
+    style="border-radius: 50%; max-width: 50%; height: auto; aspect-ratio: 1;"
   />
   <Me />
+  <p>Recent posts:</p>
+  <Posts limit={3} />
+  <a href="/blog">All posts -></a>, <a href="/feed">RSS feed</a>
 </Layout>

@@ -10,6 +10,10 @@
     "update-submodules": "git submodule foreach git pull origin main"
   },
   "dependencies": {
-    "astro": "^5.1.1"
+    "@astrojs/rss": "^4.0.11",
+    "astro": "^5.1.1",
+    "markdown-it": "^14.1.0",
+    "node-html-parser": "^7.0.1",
+    "sanitize-html": "^2.14.0"
   }
 }

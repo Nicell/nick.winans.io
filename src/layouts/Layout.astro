@@ -1,3 +1,7 @@
+---
+const { title = "Nick Winans", description } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,7 +20,14 @@
       type="font/woff2"
       crossorigin
     />
-    <title>Nick Winans</title>
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Nick Winans"
+      href={new URL("feed", Astro.site)}
+    />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
   </head>
   <body>
     <main>
@@ -54,15 +65,23 @@
     --light: oklch(98% 0.015 90);
     --link-dark: oklch(45% 0.15 250);
     --link-light: oklch(80% 0.1 250);
+    --code-dark: oklch(23% 0.01 10);
+    --code-light: oklch(100% 0.01 90);
   }
 
   body {
     font-family: "JetBrains Mono", "Courier New Fallback", monospace;
+    line-height: 1.35;
     margin: 0;
     padding: 2em 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  main {
+    max-width: 64ch;
+    width: 100%;
   }
 
   html {
@@ -83,12 +102,43 @@
     a {
       color: var(--link-light);
     }
+
+    time {
+      opacity: 0.8;
+      font-size: 0.8rem;
+    }
   }
 
   img {
-    border-radius: 50%;
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
-    aspect-ratio: 1;
+    border-radius: 0.5em;
+  }
+
+  p > code {
+    background-color: var(--code-light);
+    padding: 0.25em;
+    border-radius: 0.25em;
+  }
+
+  .astro-code {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: var(--code-light) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    p > code {
+      background-color: var(--code-dark);
+    }
+
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--code-dark) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
   }
 </style>
