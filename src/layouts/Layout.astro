@@ -42,7 +42,6 @@ const { title = "Nick Winans", description, og } = Astro.props;
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     {og && (
-      <meta name="twitter:image:src" content={og} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@winansnick" />
       <meta name="twitter:title" content={title} />

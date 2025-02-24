@@ -2,9 +2,10 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
+import MarkdownItFootnote from "markdown-it-footnote";
 import { parse } from "node-html-parser";
 import { getImage } from "astro:assets";
-const parser = new MarkdownIt();
+const parser = new MarkdownIt().use(MarkdownItFootnote);
 const imageImports = import.meta.glob("../blog/**/*.{jpeg,jpg,png,gif,webp}");
 
 async function postContent(context, post) {
