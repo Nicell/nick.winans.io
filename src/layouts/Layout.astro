@@ -37,6 +37,7 @@ const { title = "Nick Winans", description, og } = Astro.props;
       href={new URL("rss.xml", Astro.site)}
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <script defer src="https://umami.winans.io/script.js" data-website-id="667f0c84-4d37-4ab6-84d9-9628e9fdcbee"></script>
     
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
