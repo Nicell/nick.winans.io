@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Comments from "../../components/Comments.astro";
+import HeadingAnchors from "../../components/HeadingAnchors.astro";
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
@@ -21,9 +22,10 @@ const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(post.data.
 >
   <a href="/blog"><- All posts</a>, <a href="/">Home</a>
   <h1>{post.data.title}</h1>
-  <time datetime={post.data.pubDate.toISOString().split("T")[0]}>
-    {post.data.pubDate.toISOString().split("T")[0]}
+  <time datetime={post.data.pubDate?.toISOString().split("T")[0]}>
+    {post.data.pubDate?.toISOString().split("T")[0]}
   </time>
   <Content />
   <Comments />
+  <HeadingAnchors />
 </Layout>

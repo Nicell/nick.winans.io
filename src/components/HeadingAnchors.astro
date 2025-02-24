@@ -1,0 +1,44 @@
+<script>
+  const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
+  headings.forEach((heading) => {
+    const anchor = document.createElement("a");
+    anchor.href = `#${heading.id}`;
+    anchor.textContent = "#";
+    anchor.classList.add("heading-anchor");
+    anchor.onclick = (event) => {
+      event.preventDefault();
+      if (history.pushState) {
+        history.pushState(null, "", `#${heading.id}`);
+      } else {
+        location.hash = heading.id;
+      }
+      navigator.clipboard.writeText(location.href).then(() => {
+        anchor.textContent = "✓ Copied!";
+        setTimeout(() => {
+          anchor.textContent = "#";
+        }, 2000);
+      });
+    };
+    heading.appendChild(anchor);
+  });
+</script>
+<style is:global>
+  .heading-anchor {
+    display: inline;
+    margin-left: 1ch;
+    text-decoration: none;
+    color: var(--color-text);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .heading-anchor:hover {
+    opacity: 0.8;
+  }
+  h2:hover .heading-anchor,
+  h3:hover .heading-anchor,
+  h4:hover .heading-anchor,
+  h5:hover .heading-anchor,
+  h6:hover .heading-anchor {
+    opacity: 0.6;
+  }
+</style>
