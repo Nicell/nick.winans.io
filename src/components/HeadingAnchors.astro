@@ -1,25 +1,24 @@
 <script>
-  const headings = document.querySelectorAll("h2, h3, h4, h5, h6");
-  headings.forEach((heading) => {
-    const anchor = document.createElement("a");
-    anchor.href = `#${heading.id}`;
-    anchor.textContent = "#";
-    anchor.classList.add("heading-anchor");
-    anchor.onclick = (event) => {
-      event.preventDefault();
-      if (history.pushState) {
-        history.pushState(null, "", `#${heading.id}`);
-      } else {
-        location.hash = heading.id;
-      }
-      navigator.clipboard.writeText(location.href).then(() => {
-        anchor.textContent = "✓ Copied!";
-        setTimeout(() => {
-          anchor.textContent = "#";
-        }, 2000);
-      });
-    };
-    heading.appendChild(anchor);
+  const headingAnchorClick = (event: MouseEvent) => {
+    const target = event.target as HTMLAnchorElement;
+    const headingHash = target.href;
+    event.preventDefault();
+    if (history.pushState) {
+      history.pushState(null, "", headingHash);
+    } else {
+      location.hash = headingHash.slice(1);
+    }
+    navigator.clipboard.writeText(location.href).then(() => {
+      target.textContent = "✓ Copied!";
+      setTimeout(() => {
+        target.textContent = "#";
+      }, 2000);
+    });
+  };
+  document.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).classList.contains("heading-anchor")) {
+      headingAnchorClick(event);
+    }
   });
 </script>
 <style is:global>
