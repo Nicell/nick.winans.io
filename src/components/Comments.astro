@@ -1,13 +1,14 @@
 ---
 import giscusCSS from "../../public/giscus.css?raw";
-const cssUrl = import.meta.env.MODE === "development"
-  ? `data:text/css;utf8,${encodeURIComponent(giscusCSS)}`
-  : new URL("giscus.css", Astro.site);
+const cssUrl =
+  import.meta.env.MODE === "development"
+    ? `data:text/css;utf8,${encodeURIComponent(giscusCSS)}`
+    : new URL("giscus.css", Astro.site);
 ---
 
 <script
   is:inline
-  src="https://giscus.app/client.js"
+  src="/giscus.js"
   data-repo="Nicell/nick.winans.io"
   data-repo-id="R_kgDOGfcYzg"
   data-category="Blog Comments"
@@ -21,5 +22,18 @@ const cssUrl = import.meta.env.MODE === "development"
   data-lang="en"
   data-loading="lazy"
   crossorigin="anonymous"
-  defer
-></script>
+  defer></script>
+<style is:global>
+  .giscus,
+  .giscus-frame {
+    width: 100%;
+    min-height: 150px;
+  }
+  .giscus-frame {
+    border: none;
+    color-scheme: light dark;
+  }
+  .giscus-frame--loading {
+    opacity: 0;
+  }
+</style>
