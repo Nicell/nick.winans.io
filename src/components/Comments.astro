@@ -1,9 +1,5 @@
 <script>
-  import giscusCSS from "../../public/giscus.css?raw";
-  const cssUrl =
-    import.meta.env.MODE === "development"
-      ? `data:text/css;utf8,${encodeURIComponent(giscusCSS)}`
-      : new URL("giscus.css", "https://nick.winans.io");
+  const cssUrl = new URL("giscus.css", "https://nick.winans.io");
   
   const GISCUS_SESSION_KEY = "giscus-session";
   const giscusOrigin = "https://giscus.app";
