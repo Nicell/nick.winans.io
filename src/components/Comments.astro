@@ -3,7 +3,7 @@
   const cssUrl =
     import.meta.env.MODE === "development"
       ? `data:text/css;utf8,${encodeURIComponent(giscusCSS)}`
-      : new URL("giscus.css", Astro.site);
+      : new URL("giscus.css", "https://nick.winans.io");
   
   const GISCUS_SESSION_KEY = "giscus-session";
   const giscusOrigin = "https://giscus.app";
