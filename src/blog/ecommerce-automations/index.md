@@ -8,17 +8,17 @@ I'm the owner of [Typeractive.xyz](https://typeractive.xyz), a DIY ergonomic key
 
 As opposed to other stores in the ergonomic keyboard kit space, we are rarely out of stock of our 250+ product variants, dispatch >99% of eligible orders in one working day, and respond to all customer requests in an average of five hours.[^2]
 
-These achievements are only possible thanks to heavy automation of our daily operations, and after three years of running our store, I'd like to share more details about what small automations have created the biggest impact.
+These achievements are only possible thanks to heavy automation of our daily operations, and after three years of running our store, I'd like to share more details about which small automations have created the biggest impact.
 
 *Disclaimer: Our store runs on Shopify, so lots of the solutions are centered around some tools that are only available with Shopify.*[^3]
 
 ## Staying in Stock
 
-After expanding the store to more variants, we grew quickly and immediately ran into a problem every store owner wishes for; how do we keep our products in stock?
+After expanding the store to more variants, we grew quickly and immediately ran into a problem every store owner wishes for: how do we keep our products in stock?
 
 ### Reorder Notifications
 
-If I had to get rid of every other automation and keep just one, it's this. Every day a Cloudflare Worker calculates how many days left of stock remain based on past sales, creates a list of products that need to be reordered, and posts it to our team's internal Discord. 
+If I had to get rid of every other automation and keep just one, it's this. Every day a Cloudflare Worker calculates how many days of stock remain based on past sales, creates a list of products that need to be reordered, and posts it to our team's internal Discord. 
 
 ![Reorder notification example](./reorder.png)
 
@@ -26,7 +26,7 @@ Something like this can be implemented in many different ways; here's some more 
 
 - Different products take different amounts of time to order and receive. We use Shopify [Metafields](https://help.shopify.com/en/manual/custom-data/metafields) to assign a "Days to Reorder" number to every product.
 - Quantity sold per day is found using Shopify's "[Days of inventory remaining](https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/inventory-reports#days-of-inventory-remaining)" report.
-- Once ordered, we create a [Purchase Order](https://help.shopify.com/en/manual/products/inventory/purchase-orders) in Shopify, which causes that product to fall of our reorder notification keeping it neat and tidy.
+- Once ordered, we create a [Purchase Order](https://help.shopify.com/en/manual/products/inventory/purchase-orders) in Shopify, which causes that product to fall off our reorder notification keeping it neat and tidy.
 - Neither Shopify's reports nor purchase orders are supported via their API. We access them programmatically by forging a Shopify admin client GraphQL request. You can learn more about forging requests [from my friend David](https://youtu.be/8GZPQUjd7pk?si=krxvkyiKMIDb1R1I). Shopify, *please* add these to your API.
 
 I've considered packaging this up as a simple Shopify App, but I haven't gotten around to it. If this might interest you, let me know!
@@ -41,7 +41,7 @@ Our existing reorder notification didn't work as well since we should be continu
 
 Once again, we use Metafields to define a per-variant "Desired Stock" value. We know some colors are more popular, so we want to have more ready to go. With this dashboard, instead of blindly scrolling through >100 variants figuring out what to print, we can just find which variants have the lowest desired stock level (percent). This reduces the amount of time it takes to start another print, which requires stepping away from fulfilling orders.
 
-This dashboard in specific is generated using [Retool](https://retool.com/) and Shopify's Admin GraphQL API. Retool works well, but I don't think it's incredible, and there's probably lots of other options out there. It's a shame Shopify's new "[Explorations](https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/new-analytics/explorations)" in Reports don't appear to support inventory queries like this in any significant capacity.
+This dashboard in particular is generated using [Retool](https://retool.com/) and Shopify's Admin GraphQL API. Retool works well, but I don't think it's incredible, and there's probably lots of other options out there. It's a shame Shopify's new "[Explorations](https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/new-analytics/explorations)" in Reports don't appear to support inventory queries like this in any significant capacity.
 
 ### Back in Stock Notifications
 
@@ -69,7 +69,7 @@ To dispatch our 30 orders a day on time, we need to save as much of Jack's (our 
 
 Our warehouse is laid out with our products along the walls in cubbies, [stackable bins](https://www.menards.com/main/search.html?search=stackable+bins), and drawers. Normally, when a Shopify packing slip is printed out, the order is based on the order that the customer added the items to the cart. This isn't very helpful.
 
-For the final time in this post, I will once again point to Metafields. For every product variant, we set a five digit integer, which orders it in our packing slip. Note that the sorting is alphabetical, so make sure to use all five digits.
+For the final time in this post, I will once again point to Metafields. For every product variant, we set a five-digit integer, which orders it in our packing slip. Note that the sorting is alphabetical, so make sure to use all five digits.
 
 After setting up the Metafields we can add a few lines to our packing slip liquid template that will order everything how we want it.
 
@@ -124,7 +124,7 @@ We have an incredible Discord [community](https://typeracitve.xyz/discord). Memb
 
 Once a customer gets to Discord, they can create a post in our help forum. When they do this, they're greeted by an AI bot that has our entire documentation as a system prompt.[^5] While the AI bot does not resolve all submissions, it provides instant acknowledgment and starts the support process.
 
-Mike and Jack monitor the Discord and will help how they can, but often the technical questions aren't in their wheel house. Other community members graciously help out, otherwise the questions will be forwarded to me, and I'll help as soon as I can.
+Mike and Jack monitor the Discord and will help how they can, but often the technical questions aren't in their wheelhouse. Other community members graciously help out, otherwise the questions will be forwarded to me, and I'll help as soon as I can.
 
 ### NotebookLM
 
