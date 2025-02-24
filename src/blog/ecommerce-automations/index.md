@@ -146,6 +146,6 @@ I hope you found this peek into our operations useful or at least interesting! W
 
 [^3]: I often see stores spend a lot of time setting up alternative self-hosted storefronts like WooCommerce, Vendure, Medusa, etc. While I'm a huge advocate for self-hosting software (lots of our internal tools are self-hosted), I would highly recommend sticking to Shopify. Your main store expense, by far, will end up being payment processing. Shopify, at least in the US, is extremely competitive on payment processing, and the small monthly fee easily pays for itself in terms of stability, global speed, API and custom app capabilities, Shopify Flow, and more.
 
-[^4]: Thank you Shopify for adding the "Run code" block! This used to be a *massive* if/then/else flow tree.I can see it potentially replacing even more of my Firebase functions and Cloudflare Workers if they continue to expand its capabilities.
+[^4]: Thank you Shopify for adding the "Run code" block! This used to be a *massive* if/then/else flow tree. I can see it potentially replacing even more of my Firebase functions and Cloudflare Workers if they continue to expand its capabilities.
 
 [^5]: Google Gemini is slept on. I'm using the Flash 2.0 model, and it's one of the few models that actually seems to take the entire long context into account and doesn't miss instructions. It does all of this while being incredible cost effective.
