@@ -26,18 +26,18 @@
     display: inline;
     margin-left: 1ch;
     text-decoration: none;
-    color: var(--color-text);
     opacity: 0;
     transition: opacity 0.2s;
-  }
-  .heading-anchor:hover {
-    opacity: 0.8;
   }
   h2:hover .heading-anchor,
   h3:hover .heading-anchor,
   h4:hover .heading-anchor,
   h5:hover .heading-anchor,
   h6:hover .heading-anchor {
-    opacity: 0.6;
+    opacity: 0.8;
+  }
+  .heading-anchor:hover {
+    opacity: 1.0 !important;
+    text-decoration: underline;
   }
 </style>
