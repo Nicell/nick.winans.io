@@ -6,7 +6,7 @@ pubDate: 2025-03-23
 
 *This post shares the story of the [nice!nano](https://nicekeyboards.com/nice-nano/); a wireless, ProMicro-compatible microcontroller board I made in my freshman year of college. The nice!nano powers tens of thousands of keyboards, has inspired many, and changed my life.*
 
-Over my first winter break in college, I created what I called the [Dissatisfaction65](https://github.com/Nicell/Dissatisfaction-65), a wireless 65% keyboard inspired by the [Satisfaction75](https://cannonkeys.com/collections/satisfaction-75). I don't remember exactly why, but I wanted to try making a DIY wireless keyboard after having made a few wired ones. The [Adafruit 32u4 Bluefruit LE](https://www.adafruit.com/product/2829) microcontroller was used to accomplish wireless since the open-source QMK keyboard firmware supported Bluetooth with this specific board. The project looked great in the end, but its performance was *awful*. The typing latency was nearly unusable, and it only lasted a few days on battery even with a huge battery inside.
+Over my first winter break in college, I created what I called the [Dissatisfaction65](https://github.com/Nicell/Dissatisfaction-65), a wireless 65% keyboard inspired by the Satisfaction75. I don't remember exactly why, but I wanted to try making a DIY wireless keyboard after having made a few wired ones. The Adafruit 32u4 Bluefruit LE microcontroller was used to accomplish wireless since the open-source QMK keyboard firmware supported Bluetooth with this specific board. The project looked great in the end, but its performance was *awful*. The typing latency was nearly unusable, and it only lasted a few days on battery even with a huge battery inside.
 
 Seeing all the low-latency, long battery-life wireless products from companies like Logitech and Apple, I knew that something better was possible. In the next two months I dove into the world of wireless microcontrollers and DIY keyboards. I quickly learned that Nordic microchips were the hobbyist's choice and the Pro Micro format reigned as king for DIY keyboards. In my search I discovered three microcontrollers trying to fill the gap between the two: the [BlueMicro](https://github.com/jpconstantineau/NRF52-Board/tree/b739f4d053c72c3307a3888611c3a73fe1c1b757), the [nRFMicro](https://github.com/joric/nrfmicro/tree/cf9c53bb59e2bb070b8206cb768ca13510e35dc8), and the [BLE-Micro-Pro](https://github.com/sekigon-gonnoc/BLE-Micro-Pro/tree/4d61fb50ae3e1cce0928c20ccf690988b3119318).[^1]
 
@@ -24,7 +24,11 @@ The weekend (yes, the whole thing was designed in a weekend) I created the nice!
 
 Over the next week I created a name and found my PCB assembler. The name is based on my online username, "Nicell". I wanted to continue the spirit of metric naming of the Pro Micro and came up with "nice!nano". The stylized lower-case pixel font mark was created to sit atop the antenna. After reaching out to a few assemblers, the cheapest option for producing five was about $100. That was a lot to spend on what could've easily been a broken design, but after a few days of meticulously re-reviewing my designs, I paid[^3].
 
+![The first nice!nano with the charging LED on](./nano-v0.1.jpg)
+
 A few weeks later the boards showed up at my door. I was both ecstatic and terrified they wouldn't work. As I plugged in my first one I closed my eyes, tensed up, and peeked. To my surprise and relief, they worked! Over the next couple of weeks I built a Lily58 with them and got a modified version of QMK working on it. In my testing I found the board could last a few weeks on a 110mAh battery. When comparing to the Dissatisfaction65 that lasted a few days on a 2,500mAh battery, we were looking at over a 100x improvement in power efficiency. I was elated, and I posted my fully wireless Lily58 on Reddit and [it got quite a bit of interest](https://www.reddit.com/r/MechanicalKeyboards/comments/fzlfy8/fully_wireless_lily58_pro/).
+
+![The Lily58](./lily.jpg)
 
 Over the next few weeks my tiny Discord grew into a sizable community focused on wireless keyboard innovation. I launched an interest check for a group buy, made a few more refinements of the nice!nano, and then I was ready to launch the group buy in mid June.
 
@@ -34,13 +38,13 @@ As a college student, I didn't have the money to bank roll a purchase of 1,000 n
 
 The sale went live on June 20th at 11am central. Within the first few minutes I had met my minimum purchase amount. I remember sitting in my childhood bedroom (thanks covid) on the Shopify dashboard watching orders pour in. It was an incredible feeling. Within just seven hours all 1,000 nice!nanos had been sold ending the group buy. In the next two months I got all the product in and shipped out the 400+ unique orders with the help of my family. 
 
-With the success of the group buy, you might wonder, what's so awful? Well, it was extremely stressful holding on to so many people's money without a physical product to back it yet. Along with PayPal holding half the funds of the group buy for a while, it was a bit terrifying. At the same time, group buys have caused the mechanical keyboard community a lot of strife with stolen funds and extremely delayed projects. When I see well-established stores that should have capital running group buys, I can't help but shake my head. I decided shortly after this that I will never run a group buy again.
+With the success of the group buy, you might wonder, what's so awful? Well, it was extremely stressful holding on to so many people's money without a physical product to back it yet. Along with PayPal holding half the funds of the group buy for a while, it was a bit terrifying. At the same time, group buys have caused the mechanical keyboard community a lot of strife with stolen funds and extremely delayed projects. When I see well-established stores that *should* have capital running group buys, I can't help but shake my head. I decided shortly after this that I will never run a group buy again.
 
 ## ZMK
 
 Rewinding back a couple of months, as I was waiting for group buy product to come in, there was still a fairly major part of the ecosystem missing; decent firmware. I bounced between different existing options unsatisfied with the result. That was until I was connected with Pete Johanson who coincidentally had started working on a wireless keyboard firmware powered by the modern Zephyr RTOS.
 
-I quickly sent some pre-production units to Pete to mess around with. Shortly after, he got an early version of ZMK working on the nice!nano, and we hit the ground running building a new wireless-first firmware with a low-power focus. By early 2021 a small community lead by Pete had created an extremely performant and feature-full wireless firmware.
+I quickly sent some pre-production units to Pete to mess around with. Shortly after, he got an early version of ZMK working on the nice!nano, and we hit the ground running building a new wireless-first firmware with a low-power focus. By early 2021 a small community led by Pete had created an extremely performant and feature-full wireless firmware.
 
 ## Settling in
 
@@ -60,7 +64,7 @@ In 2023 the nice!nano was cloned not once but twice. Two different designed copi
 
 To be clear, these are _clones_. I think competition is fair, but both of these new boards that popped up are advertised as nice!nanos and are shipped with the exact same firmware I use on the nice!nano, so when someone plugs it in, it says it's a nice!nano. If the manufacturers would have just built their own firmware (it's open source!) and not used the nice!nano in the title of their listings, I would say it's fair game.
 
-Seeing my product get cloned gave me mixed feelings. As everyone knows, imitation is the greatest form of flattery, but seeing my work being ridden on its coattails was frustrating. At the end of the day though, their product is subpar, and nice!nanos continue to sell at a consistent rate. Some of that is likely due to the largest DIY wireless keyboard store not stocking them. Thanks, Typeractive!
+Seeing my product get cloned gave me mixed feelings. As everyone knows, imitation is the greatest form of flattery, but seeing them ride the coattails of my work was frustrating. At the end of the day though, their product is subpar, and nice!nanos continue to sell at a consistent rate. Some of that is likely due to the largest DIY wireless keyboard store not stocking them. Thanks, Typeractive!
 
 ## The million dollar product
 
