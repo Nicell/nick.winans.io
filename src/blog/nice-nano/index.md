@@ -46,7 +46,7 @@ With the success of the group buy, you might wonder, what's so awful? Well, it w
 
 ## ZMK
 
-Rewinding back a couple of months, as I was waiting for group buy product to come in, there was still a fairly major part of the ecosystem missing; decent firmware. I bounced between different existing options unsatisfied with the result. That was until I was connected with Pete Johanson who coincidentally had started working on a wireless keyboard firmware powered by the modern Zephyr RTOS.
+Rewinding back a couple of months, as I was waiting for group buy product to come in, there was still a fairly major part of the ecosystem missing: decent firmware. I bounced between different existing options unsatisfied with the result. That was until I was connected with Pete Johanson who coincidentally had started working on a wireless keyboard firmware powered by the modern Zephyr RTOS.
 
 I quickly sent some pre-production units to Pete to mess around with. Shortly after, he got an early version of ZMK working on the nice!nano, and we hit the ground running building a new wireless-first firmware with a low-power focus. By early 2021 a small community led by Pete had created an extremely performant and feature-full wireless firmware.
 
@@ -77,7 +77,7 @@ Ok, so the title is a bit of click-bait, but if you made it this far, I suppose 
 Creating this post has been an incredible trip down memory lane. The nice!nano has had immeasurable impact on my life, and it only happened thanks to so many people that helped along the way. In semi-chronological order, I'd like to shout out individuals that helped me immensely:
 
 - Joric (creator of the nRFMicro)
-- Pierre Constantineau (creator of the BlueMicro board an firmware)
+- Pierre Constantineau (creator of the BlueMicro board and firmware)
 - Pete Johanson (creator of ZMK)
 - Mike and Pam (my parents)
 
