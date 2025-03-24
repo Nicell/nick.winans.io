@@ -72,7 +72,7 @@ Seeing my product get cloned gave me mixed feelings. As everyone knows, imitatio
 
 ## The million dollar product
 
-Ok, so the title is a bit of click-bait, but if you made it this far, I suppose it worked. To date, over 50,000 nice!nanos have been sold at various online retailers around the world representing over a million dollars in sales. It's hard to wrap my head around still, and I'm extremely grateful. While I put in a lot of hard work, I also recognize that timing and luck played a significant role. The growing interest in wireless keyboards and the lack of available options in the DIY space created the perfect environment for the nice!nano to thrive.
+Ok, so the title is a bit of click-bait, but if you made it this far, I suppose it worked. The nice!nano might have been designed in my dorm room, but this was a multi-year journey. To date, over 50,000 nice!nanos have been sold at various online retailers around the world representing over a million dollars in sales. It's hard to wrap my head around still, and I'm extremely grateful. While I put in a lot of hard work, I also recognize that timing and luck played a significant role. The growing interest in wireless keyboards and the lack of available options in the DIY space created the perfect environment for the nice!nano to thrive.
 
 Creating this post has been an incredible trip down memory lane. The nice!nano has had immeasurable impact on my life, and it only happened thanks to so many people that helped along the way. In semi-chronological order, I'd like to shout out individuals that helped me immensely:
 
