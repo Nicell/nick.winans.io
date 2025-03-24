@@ -1,10 +1,10 @@
 ---
 title: I Made a Million Dollar Product from My Dorm Room
-description: The story of the nice!nano; a wireless ProMicro-compatible microcontroller board I made in my freshman year of college.
+description: The story of the nice!nano; a wireless Pro Micro-compatible microcontroller board I made in my freshman year of college.
 pubDate: 2025-03-23
 ---
 
-*This post shares the story of the [nice!nano](https://nicekeyboards.com/nice-nano/); a wireless, ProMicro-compatible microcontroller board I made in my freshman year of college. The nice!nano powers tens of thousands of keyboards, has inspired many, and changed my life.*
+*This post shares the story of the [nice!nano](https://nicekeyboards.com/nice-nano/); a wireless, Pro Micro-compatible microcontroller board I made in my freshman year of college. The nice!nano powers tens of thousands of keyboards, has inspired many, and changed my life.*
 
 Over my first winter break in college, I created what I called the [Dissatisfaction65](https://github.com/Nicell/Dissatisfaction-65), a wireless 65% keyboard inspired by the Satisfaction75. I don't remember exactly why, but I wanted to try making a DIY wireless keyboard after having made a few wired ones. The Adafruit 32u4 Bluefruit LE microcontroller was used to accomplish wireless since the open-source QMK keyboard firmware supported Bluetooth with this specific board. The project looked great in the end, but its performance was *awful*. The typing latency was nearly unusable, and it only lasted a few days on battery even with a huge battery inside.
 
@@ -16,7 +16,7 @@ Seeing all the low-latency, long battery-life wireless products from companies l
 | nRFMicro      | N/A         | Yes         | Yes         |
 | BLE-Micro-Pro | ~$40        | Yes         | No          |
 
-The BlueMicro's form factor meant that I couldn't build most ProMicro keyboards since it would interfere. The BLE-Micro-Pro was pretty expensive, locked down, and only sold in Japan. The nRFMicro was pretty close. At first, I decided to modify the nRFMicro to fit my needs, but I soon realized my goals were a bit too ambitious, so I restarted from scratch.
+The BlueMicro's form factor meant that I couldn't build most Pro Micro keyboards since it would interfere. The BLE-Micro-Pro was pretty expensive, locked down, and only sold in Japan. The nRFMicro was pretty close. At first, I decided to modify the nRFMicro to fit my needs, but I soon realized my goals were a bit too ambitious, so I restarted from scratch.
 
 ## The nice!nano was born
 
