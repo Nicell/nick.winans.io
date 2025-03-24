@@ -22,7 +22,7 @@ The BlueMicro's form factor meant that I couldn't build most ProMicro keyboards 
 
 The weekend (yes, the whole thing was designed in a weekend) I created the nice!nano, I don't think I left my desk for more than sleeping and getting food from the dining hall maybe three times. It was just me, [KiCad](https://www.kicad.org/), Nordic's Infocenter[^2], [nRFMicro wiki](https://github.com/joric/nrfmicro/wiki), and the [Adafruit nRF52840 Feather schematic](https://learn.adafruit.com/introducing-the-adafruit-nrf52840-feather/downloads). I put together the schematic and BOM, laid out the PCB, and routed (and re-routed) the connections. On the other side I came out with the thinnest Pro Micro compatible nRF52840 based board.
 
-Over the next week I created a name and found my PCB assembler. The name is based on my online username, "Nicell". I wanted to continue the spirit of metric naming of the Pro Micro and came up with "nice!nano". The stylized lower-case pixel font mark was created to sit atop the antenna. After reaching out to a few assemblers, the cheapest option for producing five was about $100. That was a lot to spend on what could've easily been a broken design, but after a few days of meticulously re-reviewing my designs, I paid[^3].
+Over the next week I created a name and found my PCB assembler. The name is based on my online username, "Nicell". I wanted to continue the spirit of metric naming of the Pro Micro and came up with "nice!nano". The stylized lower-case pixel font mark was created to sit atop the antenna. After reaching out to a few assemblers, the cheapest option for producing five was about $100. That was a lot to spend on what could've easily been a broken design, but after a few days of meticulously re-reviewing my designs, I paid.[^3]
 
 ![The first nice!nano with the charging LED on](./nano-v0.1.jpg)
 
@@ -36,7 +36,11 @@ Over the next few weeks my tiny Discord grew into a sizable community focused on
 
 As a college student, I didn't have the money to bank roll a purchase of 1,000 nice!nanos, so I ran a group buy pre-purchase. At the time I had set a minimum purchase amount of 200 pieces for the order to go through and a maximum of 1,000 because I didn't think I could handle more than that. I set the end date for a month later. In the end, it wasn't even open for a day.
 
-The sale went live on June 20th at 11am central. Within the first few minutes I had met my minimum purchase amount. I remember sitting in my childhood bedroom (thanks covid) on the Shopify dashboard watching orders pour in. It was an incredible feeling. Within just seven hours all 1,000 nice!nanos had been sold ending the group buy. In the next two months I got all the product in and shipped out the 400+ unique orders with the help of my family. 
+The sale went live on June 20th at 11am central. Within the first few minutes I had met my minimum purchase amount. I remember sitting in my childhood bedroom (thanks covid) on the Shopify dashboard watching orders pour in. It was an incredible feeling. Within just seven hours all 1,000 nice!nanos had been sold, ending the group buy. In the next two months I got all the product in and shipped out the 400+ unique orders with the help of my family.
+
+![My mom's facebook post about the process](./facebook-post.jpg)
+
+*My mom posted about the fulfillment process on Facebook. It was a family effort!*
 
 With the success of the group buy, you might wonder, what's so awful? Well, it was extremely stressful holding on to so many people's money without a physical product to back it yet. Along with PayPal holding half the funds of the group buy for a while, it was a bit terrifying. At the same time, group buys have caused the mechanical keyboard community a lot of strife with stolen funds and extremely delayed projects. When I see well-established stores that *should* have capital running group buys, I can't help but shake my head. I decided shortly after this that I will never run a group buy again.
 
