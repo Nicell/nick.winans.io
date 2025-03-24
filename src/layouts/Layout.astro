@@ -145,6 +145,16 @@ const { title = "Nick Winans", description, og } = Astro.props;
     border-radius: 0.5em;
   }
 
+  table {
+    border-collapse: collapse;
+    max-width: 100%;
+  }
+
+  th, td {
+    border: 1px solid;
+    padding: 1ch;
+  }
+
   p > code {
     background-color: var(--code-light);
     padding: 0.25em;
