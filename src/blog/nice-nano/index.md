@@ -64,7 +64,7 @@ I created a [3D interactive configuration tool](https://typeractive.xyz/pages/bu
 
 ## Cloned, twice!
 
-In 2023 the nice!nano was cloned not once but twice. Two different designed copies popped up on Taobao, and it wasn't long before they ended up on AliExpress and even on my existing vendors' stores. I was a bit shocked by this, and in the end I found I couldn't do much about this.
+In 2023 the nice!nano was cloned, not once, but twice. Two different designed copies popped up on Taobao, and it wasn't long before they ended up on AliExpress and even on my existing vendors' stores. I was a bit shocked by this, and in the end I found I couldn't do much about this.
 
 To be clear, these are _clones_. I think competition is fair, but both of these new boards that popped up are advertised as nice!nanos and are shipped with the exact same firmware I use on the nice!nano, so when someone plugs it in, it says it's a nice!nano. If the manufacturers would have just built their own firmware (it's open source!) and not used the nice!nano in the title of their listings, I would say it's fair game.
 
