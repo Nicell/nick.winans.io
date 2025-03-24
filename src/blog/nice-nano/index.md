@@ -1,6 +1,6 @@
 ---
 title: I Made a Million Dollar Product from My Dorm Room
-description: The story of the nice!nano; a wireless ProMicro-compatible microcontroller board I made in freshman year of college.
+description: The story of the nice!nano; a wireless ProMicro-compatible microcontroller board I made in my freshman year of college.
 pubDate: 2025-03-23
 ---
 

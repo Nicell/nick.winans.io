@@ -56,7 +56,7 @@ export const onRequest: PagesFunction = async ({ request }) => {
               style={{
                 lineHeight: "1.15em",
               }}
-              tw="text-5xl"
+              tw="text-4xl"
             >
               {description}
             </div>
