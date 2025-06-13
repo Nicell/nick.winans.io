@@ -1,0 +1,55 @@
+<div class="divider"></div>
+<form method="post" action="https://list.winans.io/subscription/form">
+  <h3>Subscribe to future posts</h3>
+  <input type="hidden" name="nonce" />
+  <input type="hidden" name="l" value="08d00f53-dbba-4f3d-a320-362ed2d9550b" />
+
+  <div style="display: flex">
+    <input type="email" name="email" required placeholder="E-mail" />
+    <input type="submit" value="Subscribe" />
+  </div>
+</form>
+<div class="divider"></div>
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1ch;
+  }
+
+  .divider {
+    color: inherit;
+    border-bottom: 1px solid rgba(140, 120, 120, 0.5);
+    width: 100%;
+    margin: 2ch 0;
+  }
+
+  input {
+    color: inherit;
+    font-family: inherit;
+  }
+
+  input[type="email"] {
+    background-color: rgba(140, 120, 120, 0.2);
+    padding: 1ch;
+    border: none;
+  }
+
+  input[type="submit"] {
+    background-color: var(--link-dark);
+    color: var(--light);
+    border: none;
+    padding: 1ch;
+    width: auto;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: rgba(140, 120, 120, 0.4);
+  }
+</style>
