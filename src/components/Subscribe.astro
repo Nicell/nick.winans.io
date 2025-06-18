@@ -14,20 +14,28 @@
     <input type="email" name="email" required placeholder="E-mail" />
     <input type="submit" value="Subscribe" />
   </div>
-  
+
   <div
     class="cf-turnstile"
     style="display: none"
     data-sitekey="0x4AAAAAABhbyyemU0sVedNu"
+    data-callback="onTurnstileSuccess"
   >
   </div>
 </form>
 <div class="divider"></div>
 <script is:inline>
+  let waiting = false;
   function checkTurnstile(e) {
     if (!turnstile.getResponse()) {
       document.querySelector(".cf-turnstile").style.display = "block";
       e.preventDefault();
+      waiting = true;
+    }
+  }
+  function onTurnstileSuccess() {
+    if (waiting) {
+      document.querySelector("form").submit();
     }
   }
 </script>
