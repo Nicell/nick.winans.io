@@ -21,7 +21,7 @@ const og = `https://nick.winans.io/blog/og?title=${encodeURIComponent(post.data.
   description={post.data.description}
   og={og}
 >
-  <a href="/blog"><- All posts</a>, <a href="/">Home</a>
+  <a href="/blog/"><- All posts</a>, <a href="/">Home</a>
   <h1>{post.data.title}</h1>
   <time datetime={post.data.pubDate?.toISOString().split("T")[0]}>
     {post.data.pubDate?.toISOString().split("T")[0]}

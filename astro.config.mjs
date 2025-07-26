@@ -3,11 +3,13 @@ import { defineConfig } from "astro/config";
 import sitemap from '@astrojs/sitemap';
 import rehypeSlug from "rehype-slug";
 import rehypeHeadingAnchors from "./src/plugins/heading-anchors";
+import copyAudioFiles from "./src/plugins/copy-audio";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://nick.winans.io",
-  integrations: [sitemap()],
+  trailingSlash: "always",
+  integrations: [sitemap(), copyAudioFiles()],
   image: {
     remotePatterns: [{ protocol: "https" }],
   },

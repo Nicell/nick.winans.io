@@ -12,7 +12,7 @@ const { limit = posts.length, offset = 0 } = Astro.props;
         <time datetime={post.data.pubDate.toISOString().split("T")[0]}>
           {post.data.pubDate.toISOString().split("T")[0]}
         </time>
-        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        <a href={`/blog/${post.id}/`}>{post.data.title}</a>
         <span>{post.data.description}</span>
       </li>
     ))
