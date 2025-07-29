@@ -20,7 +20,7 @@ Here's how they sound:
 | [Corne Premium]       | <audio controls preload="metadata" src="./corne.mp3"></audio>  |
 | [Photon] (Target)[^1] | <audio controls preload="metadata" src="./photon.mp3"></audio> |
 
-I hope you can hear a big difference. The Lily58 is hollow and the switch stabilizers rattle a lot. The Corne is certainly sounds a bit more solid, but the switches are still shallow in sound profile. Then we have the Photon, wow! The sound is deep, crisp, and satisfying. It's got _thock_!
+I hope you can hear a big difference. The Lily58 is hollow and the switch stabilizers rattle a lot. The Corne certainly sounds a bit more solid, but the switches are still shallow in sound profile. Then we have the Photon, wow! The sound is deep, crisp, and satisfying. It's got _thock_!
 
 ## The Plan
 
