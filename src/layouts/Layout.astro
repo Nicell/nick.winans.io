@@ -98,12 +98,16 @@ const { title = "Nick Winans", description, og } = Astro.props;
 
   body {
     font-family: "JetBrains Mono", "Courier New Fallback", monospace;
-    line-height: 1.35;
+    line-height: 1.55;
     margin: 0;
     padding: 2em 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
   }
 
   main {
@@ -121,6 +125,15 @@ const { title = "Nick Winans", description, og } = Astro.props;
     color: var(--link-dark);
   }
 
+  time {
+    opacity: 0.8;
+    font-size: 0.8rem;
+  }
+
+  sup {
+    line-height: 1;
+  }
+
   @media (prefers-color-scheme: dark) {
     html {
       background-color: var(--dark);
@@ -129,11 +142,6 @@ const { title = "Nick Winans", description, og } = Astro.props;
 
     a {
       color: var(--link-light);
-    }
-
-    time {
-      opacity: 0.8;
-      font-size: 0.8rem;
     }
   }
 
