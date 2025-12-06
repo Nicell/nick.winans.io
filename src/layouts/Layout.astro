@@ -91,7 +91,9 @@ const { title = "Nick Winans", description, og } = Astro.props;
     --dark: oklch(30% 0.01 10);
     --light: oklch(98% 0.015 90);
     --link-dark: oklch(45% 0.15 250);
+    --link-dark-underline: oklch(45% 0.15 250 / 0.4);
     --link-light: oklch(80% 0.1 250);
+    --link-light-underline: oklch(80% 0.1 250 / 0.4);
     --code-dark: oklch(23% 0.01 10);
     --code-light: oklch(100% 0.01 90);
   }
@@ -123,6 +125,20 @@ const { title = "Nick Winans", description, og } = Astro.props;
 
   a {
     color: var(--link-dark);
+    text-decoration-color: var(--link-dark-underline);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    &:hover {
+      text-decoration-color: var(--link-dark);
+    }
+  }
+
+  ul {
+    margin-top: 0.25em
+  }
+
+  li {
+    margin-bottom: 0.5rem;
   }
 
   time {
@@ -142,6 +158,10 @@ const { title = "Nick Winans", description, og } = Astro.props;
 
     a {
       color: var(--link-light);
+      text-decoration-color: var(--link-light-underline);
+      &:hover {
+        text-decoration-color: var(--link-light);
+      }
     }
   }
 

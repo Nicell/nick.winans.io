@@ -12,14 +12,32 @@ const { limit = posts.length, offset = 0 } = Astro.props;
         <time datetime={post.data.pubDate.toISOString().split("T")[0]}>
           {post.data.pubDate.toISOString().split("T")[0]}
         </time>
-        <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-        <span>{post.data.description}</span>
+        <div>
+          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          <span>{post.data.description}</span>
+        </div>
       </li>
     ))
   }
 </ul>
 <style>
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  div {
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
   }
 </style>
