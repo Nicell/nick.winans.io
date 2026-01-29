@@ -1,0 +1,48 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+  <nav>
+    <a href="/" class:list={[{ active: currentPath === "/" }]}>nick winans</a>
+    <span class="sep">/</span>
+    <a href="/blog/" class:list={[{ active: currentPath.startsWith("/blog") }]}>blog</a>
+    <span class="sep">/</span>
+    <a href="/rss.xml">rss</a>
+  </nav>
+</header>
+
+<style>
+  header {
+    margin-bottom: 2em;
+    max-width: 64ch;
+    width: 100%;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5ch;
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+
+  nav a.active {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+
+  .sep {
+    opacity: 0.4;
+  }
+</style>
